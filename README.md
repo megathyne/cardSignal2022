@@ -3,6 +3,8 @@
 # Data Resources
 
 - Sealed Overview https://api.mtgstocks.com/sealed
+- Sealed Set Details https://api.mtgstocks.com/sealed/3405
+- Sealed Set Date/Price https://api.mtgstocks.com/sealed/3405/prices
 
 # Analytic Options
 
@@ -22,3 +24,4 @@
 
 1. Make a daily request to https://api.mtgstocks.com/sealed and store contents in a .json file with the timestamp of the request
 
+2. Pandas Dataframe
