@@ -1,3 +1,7 @@
+# Data
+codeSamples/src/data/*
+
+
 # Logs
 logs
 *.log

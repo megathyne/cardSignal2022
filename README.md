@@ -2,9 +2,35 @@
 
 # Data Resources
 
+## Sources
+
 - Sealed Overview https://api.mtgstocks.com/sealed
 - Sealed Set Details https://api.mtgstocks.com/sealed/3405
 - Sealed Set Date/Price https://api.mtgstocks.com/sealed/3405/prices
+
+## Models
+
+Sealed Overview
+
+```
+  [{
+    id: number // 817,
+    name: string // "Double Masters 2022",
+    slug: string // "817-double-masters-2022",
+    abbreviation: string // "2X2",
+    icon_class: string // "ss-2x2",
+    date: number // 1657238400000,
+    products: [{
+        id: number, // 3401,
+        name: string, // "Collector Booster Display Case",
+        slug: string, //"3401-double-masters-2022-collector-booster-display-case",
+        latestPrice: {
+          "average": number, // 2300,
+          "market": number // 2300,
+        }
+    }]
+  }]
+```
 
 # Analytic Options
 
@@ -25,3 +51,7 @@
 1. Make a daily request to https://api.mtgstocks.com/sealed and store contents in a .json file with the timestamp of the request
 
 2. Pandas Dataframe
+
+```
+
+```
