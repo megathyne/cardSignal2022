@@ -1,0 +1,14 @@
+{
+  "name": "codesamples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "getSealedData.js",
+  "scripts": {
+    "start": "node getData.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
