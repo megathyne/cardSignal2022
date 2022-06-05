@@ -1,45 +1,286 @@
 const fs = require("fs/promises");
 const { boxTypes } = require("./constants");
 
-async function main() {
+/**
+ * booster packs 2.99 till "553-urza-s-destiny-booster-box"
+ * booster packs 3.29 till "350-mirrodin-booster-box"
+ * booster packs 3.69 till "50-coldsnap-booster-box"
+ * booster packs 3.99 till "452-ravnica-allegiance-booster-box"
+ */
+
+const msrpLookup = {
+  "3405-double-masters-2022-draft-booster-box": 250,
+  "3402-double-masters-2022-collector-booster-display": 230,
+  "3171-commander-legends-battle-for-baldur-s-gate-collector-booster-box": 240,
+  "3169-commander-legends-battle-for-baldur-s-gate-set-booster-box": 105,
+  "3174-commander-legends-battle-for-baldur-s-gate-draft-booster-box ": 100,
+  "3203-streets-of-new-capenna-collector-booster-display": 160,
+  "3196-streets-of-new-capenna-set-booster-display": 100,
+  "3193-streets-of-new-capenna-draft-booster-box": 90,
+  "2885-kamigawa-neon-dynasty-collector-booster-display": 250,
+  "2883-kamigawa-neon-dynasty-set-booster-display": 140,
+  "2880-kamigawa-neon-dynasty-draft-booster-box": 100,
+  "2877-innistrad-double-feature-draft-booster-box": 175,
+  "2017-innistrad-crimson-vow-collector-booster-display": 150,
+  "2023-innistrad-crimson-vow-set-booster-display": 120,
+  "2020-innistrad-crimson-vow-draft-booster-box": 90,
+  "1952-innistrad-midnight-hunt-collector-booster-display": 150,
+  "1955-innistrad-midnight-hunt-set-booster-display": 120,
+  "1949-innistrad-midnight-hunt-draft-booster-box": 90,
+  "965-adventures-in-the-forgotten-realms-collector-booster-display": 150,
+  "958-adventures-in-the-forgotten-realms-draft-booster-box": 90,
+  "963-adventures-in-the-forgotten-realms-set-booster-display": 90,
+  "352-modern-horizons-2-collector-booster-display": 350,
+  "422-modern-horizons-2-set-booster-display": 260,
+  "437-modern-horizons-2-draft-booster-box": 200,
+  "560-strixhaven-school-of-mages-collector-booster-display": 200,
+  "496-strixhaven-school-of-mages-set-booster-display": 90,
+  "661-strixhaven-school-of-mages-draft-booster-box": 90,
+  "535-time-spiral-remastered-draft-booster-box": 290,
+  "347-kaldheim-collector-booster-display": 140,
+  "406-kaldheim-set-booster-display": 120,
+  "258-kaldheim-draft-booster-box": 90,
+  "73-commander-legends-draft-booster-box": 120,
+  "678-zendikar-rising-collector-booster-display": 140,
+  "707-zendikar-rising-set-booster-display": 120,
+  "599-zendikar-rising-draft-booster-box": 90,
+  "107-double-masters-booster-box": 200,
+  "253-jumpstart-booster-box": 90,
+  "196-core-set-2021-collector-booster-display": 140,
+  "80-core-set-2021-booster-box": 90,
+  "239-ikoria-lair-of-behemoths-booster-box": 90,
+  "521-theros-beyond-death-booster-box": 90,
+  "512-throne-of-eldraine-booster-box": 90,
+  "92-core-set-2020-booster-box": 90,
+  "368-modern-horizons-booster-box": 90,
+  "606-war-of-the-spark-booster-box": 90,
+  "452-ravnica-allegiance-booster-box": 90,
+  "533-ultimate-masters-booster-box": 335,
+  "236-guilds-of-ravnica-booster-box": 90,
+  "51-core-set-2019-booster-box": 90,
+  "61-battlebond-booster-box": 90,
+  "102-dominaria-booster-box": 90,
+  "342-masters-25-booster-box": 200,
+  "457-rivals-of-ixalan-booster-box": 90,
+  "523-unstable-booster-box": 90,
+  "245-iconic-masters-booster-box": 200,
+  "278-ixalan-booster-box": 90,
+  "243-hour-of-devastation-booster-box": 90,
+  "43-amonkhet-booster-box": 90,
+  "355-modern-masters-2017-booster-box": 200,
+  "63-aether-revolt-booster-box": 90,
+  "269-kaladesh-booster-box": 90,
+  "4-conspiracy-take-the-crown-booster-box": 90,
+  "164-eldritch-moon-booster-box": 90,
+  "168-eternal-masters-booster-box": 200,
+  "460-shadows-over-innistrad-booster-box": 90,
+  "373-oath-of-the-gatewatch-booster-box": 90,
+  "36-battle-for-zendikar-booster-box": 90,
+  "330-magic-origins-booster-box": 90,
+  "346-modern-masters-2015-booster-box": 200,
+  "99-dragons-of-tarkir-booster-box": 90,
+  "180-fate-reforged-booster-box": 90,
+  "265-khans-of-tarkir-booster-box": 90,
+  "317-magic-2015-m15-booster-box": 90,
+  "248-journey-into-nyx-booster-box": 90,
+  "41-born-of-the-gods-booster-box": 90,
+  "508-theros-booster-box": 90,
+  "305-magic-2014-m14-booster-box": 90,
+  "94-dragon-s-maze-booster-box": 90,
+  "237-gatecrash-booster-box": 90,
+  "446-return-to-ravnica-booster-box": 90,
+  "304-magic-2013-m13-booster-box": 90,
+  "39-avacyn-restored-booster-box": 90,
+  "57-dark-ascension-booster-box": 90,
+  "254-innistrad-booster-box": 90,
+  "313-magic-2012-m12-booster-box": 90,
+  "372-new-phyrexia-booster-box": 90,
+  "341-mirrodin-besieged-booster-box": 90,
+  "466-scars-of-mirrodin-booster-box": 90,
+  "302-magic-2011-m11-booster-box": 90,
+  "351-modern-masters-booster-box": 200,
+  "449-rise-of-the-eldrazi-booster-box": 90,
+  "576-worldwake-booster-box": 90,
+  "580-zendikar-booster-box": 90,
+  "291-magic-2010-m10-booster-box": 90,
+  "44-alara-reborn-booster-box": 90,
+  "21-conflux-booster-box": 90,
+  "462-shards-of-alara-booster-box": 90,
+  "179-eventide-booster-box": 90,
+  "456-shadowmoor-booster-box": 90,
+  "345-morningtide-booster-box": 90,
+  "290-lorwyn-booster-box": 90,
+  "54-10th-edition-booster-box": 90,
+  "232-future-sight-booster-box": 90,
+  "392-planar-chaos-booster-box": 90,
+  "513-time-spiral-booster-box": 90,
+  "50-coldsnap-booster-box": 90,
+  "70-dissension-booster-box": 90,
+  "231-guildpact-booster-box": 90,
+  "441-ravnica-booster-box": 90,
+  "49-9th-edition-booster-box": 90,
+  "454-saviors-of-kamigawa-booster-box": 90,
+  "29-betrayers-of-kamigawa-booster-box": 90,
+  "525-unhinged-booster-box": 90,
+  "55-champions-of-kamigawa-booster-box": 90,
+  "189-fifth-dawn-booster-box": 90,
+  "53-darksteel-booster-box": 90,
+  "350-mirrodin-booster-box": 90,
+  "37-8th-edition-booster-box": 90,
+  "450-scourge-booster-box": 90,
+  "277-legions-booster-box": 90,
+  "389-onslaught-booster-box": 90,
+  "247-judgment-booster-box": 90,
+  "493-torment-booster-box": 90,
+  "380-odyssey-booster-box": 90,
+  "38-apocalypse-booster-box": 90,
+  "23-7th-edition-booster-box": 90,
+  "399-planeshift-booster-box": 90,
+  "256-invasion-booster-box": 90,
+  "430-prophecy-booster-box": 90,
+  "370-nemesis-booster-box": 90,
+  "328-mercadian-masques-booster-box": 90,
+  "553-urza-s-destiny-booster-box": 90,
+  "413-portal-three-kingdoms-booster-box": 90,
+  "22-classic-sixth-edition-booster-box": 90,
+  "559-urza-s-legacy-booster-box": 90,
+  "561-urza-s-saga-booster-box": 90,
+  "495-unglued-booster-box": 90,
+  "178-exodus-booster-box": 90,
+  "417-portal-second-age-booster-box": 90,
+  "510-stronghold-booster-box": 90,
+  "502-tempest-booster-box": 90,
+  "579-weatherlight-booster-box": 90,
+  "411-portal-booster-box": 90,
+  "193-fifth-edition-booster-box": 90,
+  "568-visions-booster-box": 90,
+  "348-mirage-booster-box": 90,
+  "14-alliances-booster-box": 90,
+  "227-homelands-booster-box": 90,
+  "67-chronicles-booster-box": 90,
+  "228-ice-age-booster-box": 90,
+  "192-fourth-edition-booster-box": 90,
+  "183-fallen-empires-booster-box": 90,
+  "503-the-dark-booster-box": 90,
+  "275-legends-booster-box": 90,
+  "467-revised-edition-booster-box": 90,
+  "19-antiquities-booster-box": 90,
+  "56-arabian-nights-booster-box": 90,
+  "518-unlimited-edition-booster-box": 90,
+  "64-beta-edition-booster-box": 90,
+  "30-alpha-edition-booster-box": 90,
+};
+
+async function findFile(filename) {
+  // console.log(`${findFile.name}(${filename})`);
   try {
-    const today = new Date().toJSON().split("T")[0];
-    // const today = `2022-05-31`;
-    const sealedOverviewFile = `./data/${today}/SEALED_OVERVIEW_${today}.json`;
-    const buffer = await fs.readFile(sealedOverviewFile);
+    const buffer = await fs.readFile(filename);
     const json = buffer.toString();
-    const sealedOverview = JSON.parse(json);
+    const data = JSON.parse(json);
+    return { exists: true, filename, data };
+  } catch (error) {
+    return { exists: false, filename, data: null };
+  }
+}
 
-    const filteredSealed = sealedOverview.reduce((p, c) => {
-      const products = c.products.filter((f) => boxTypes.includes(f.name));
-      if (products.length > 0) p[c.name] = products;
-      return p;
-    }, {});
+class MtgData {
+  constructor(today) {
+    this.masterDir = `./data/${today}`;
+    this.ev = `${this.masterDir}/ev`;
+    this.products = `${this.masterDir}/products`;
+    this.prices = `${this.masterDir}/prices`;
+  }
 
-    for (key in filteredSealed) {
-      for (item of filteredSealed[key]) {
-        const detailsFile = `./data/${today}/${item.slug}-${today}.json`;
-        try {
-          const detailsBuffer = await fs.readFile(detailsFile);
-          const detailsJson = detailsBuffer.toString();
-          const details = JSON.parse(detailsJson);
-          item.details = details;
+  async getMasterProducts() {
+    return (await findFile(`${this.masterDir}/master-products.json`)).data;
+  }
 
-          const pricesFile = `./data/${today}/${item.id}-prices-${today}.json`;
-          const priceBuffer = await fs.readFile(pricesFile);
-          const pricesJson = priceBuffer.toString();
-          const prices = JSON.parse(pricesJson);
-          item.prices = prices;
-        } catch (error) {
-          console.log(error);
-        }
-      }
+  async getMasterProductEv(id, name) {
+    return await findFile(`${this.ev}/${id}-${name}.json`);
+  }
+
+  async getProduct(slug) {
+    return await findFile(`${this.products}/${slug}.json`);
+  }
+
+  async getProductPrices(slug) {
+    return await findFile(`${this.prices}/${slug}.json`);
+  }
+}
+
+async function main() {
+  // const today = new Date().toJSON().split("T")[0];
+  const today = "2022-06-05";
+  const mtgData = new MtgData(today);
+
+  const masterProducts = await mtgData.getMasterProducts();
+
+  masterProducts.map((m) => {
+    m.dateRange = [];
+    for (let i = 0; i < 50; i++) {
+      m.dateRange.push(new Date(new Date(m.date).setFullYear(new Date(m.date).getFullYear() + i)));
     }
 
-    console.log(filteredSealed[0]);
-  } catch (error) {
-    console.log(error);
+    m.products.map((p) => (p.parentId = m.id));
+  });
+
+  const productList = masterProducts.reduce((p, c) => p.concat(...c.products.filter((item) => boxTypes.includes(item.name))), []);
+  intervalLookup = {};
+  for (let i = 0; i <= 50; i++) {
+    intervalLookup[i] = [];
   }
+
+  for (const { id, parentId, name, slug } of productList) {
+    const parent = masterProducts.find((mp) => mp.id === parentId);
+
+    const productPrices = await mtgData.getProductPrices(slug);
+
+    const childPrices = [];
+    parent.dateRange.forEach((d, i) => {
+      const p = new Date(d).getTime();
+      const s = productPrices.data.average.find((f) => f[0] === p);
+      const data = { year: i + 1, price: s ? s[1] : null, change: s ? ((s[1] - msrpLookup[slug]) / msrpLookup[slug]) * 100 : null };
+      childPrices.push(data);
+
+      if (data.price !== null) {
+        intervalLookup[i].push(data.change);
+      }
+    });
+
+    // childPrices.forEach((c, i) => {
+    //   if (c.price !== null) {
+    //     intervalLookup[c.year - 1].push(c.year - 1);
+    //   }
+    // });
+
+    //console.log(parent.name, name, new Date(parent.date));
+    // childPrices.forEach(({ year, price, change }) => {
+    //   if (year === 5) {
+    //     price ? console.log(year, price, change.toFixed(2) + "%") : "";
+    //   }
+    // });
+  }
+
+  Object.keys(intervalLookup).map((key) => {
+    const average = intervalLookup[key].reduce((p, c) => (p += c), 0) / intervalLookup[key].length;
+    console.log(parseInt(key) + 1, average.toFixed(2) + "%");
+  });
+
+  // const boxByPrice = []
+  // for (const { id, name, slug } of productList) {
+  //   const product = await mtgData.getProduct(slug);
+  //   boxByPrice.push({
+  //     id,
+  //     name,
+  //     slug,
+  //     latestMarketPrice: product.data ? product.data.latestPrice.market : 0,
+  //   });
+  // }
+
+  // boxByPrice
+  //   .filter(({ latestMarketPrice }) => latestMarketPrice <= 150 && latestMarketPrice > 50)
+  //   .sort((a, b) => (a.latestMarketPrice > b.latestMarketPrice ? 1 : -1))
+  //   .forEach(({ slug, latestMarketPrice }) => console.log(slug, latestMarketPrice));
 }
 
 main();

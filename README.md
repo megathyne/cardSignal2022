@@ -55,3 +55,12 @@ Sealed Overview
 ```
 
 ```
+
+
+
+
+Notes: 
+
+1. Find the release date of each set
+2. Then get the highchart data for that set
+3. Generate at end of year mark for years 1, 2, 3, ... n
