@@ -93,12 +93,13 @@ async function main() {
   // });
 
   // Show the average of sets for each interval
+  console.log("year, average, low, high, market");
   Object.keys(intervalLookup).map((key) => {
     const average = intervalLookup[key].average.reduce((p, c) => (p += c.change), 0) / intervalLookup[key].average.length;
     const low = intervalLookup[key].low.reduce((p, c) => (p += c.change), 0) / intervalLookup[key].low.length;
     const high = intervalLookup[key].high.reduce((p, c) => (p += c.change), 0) / intervalLookup[key].high.length;
     const market = intervalLookup[key].market.reduce((p, c) => (p += c.change), 0) / intervalLookup[key].market.length;
-    console.log(parseInt(key) + 1, average.toFixed(2) + "%", low.toFixed(2) + "%", high.toFixed(2) + "%", market.toFixed(2) + "%");
+    console.log(parseInt(key), average.toFixed(2) + "%", low.toFixed(2) + "%", high.toFixed(2) + "%", market.toFixed(2) + "%");
   });
 
   // Sort by change
@@ -108,7 +109,9 @@ async function main() {
     intervalLookup[key].high.sort((a, b) => (a.change > b.change ? 1 : -1));
     intervalLookup[key].market.sort((a, b) => (a.change > b.change ? 1 : -1));
   });
-  console.log(intervalLookup[3]);
+
+  // View Interval
+  console.log(intervalLookup[4]);
 
   // Show the latest market price for each set
   // const boxByPrice = []
