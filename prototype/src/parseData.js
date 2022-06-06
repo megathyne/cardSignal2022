@@ -1,113 +1,97 @@
-const fs = require("fs/promises");
+const { MtgData } = require("./lib");
 const { boxTypes, msrpLookup } = require("./constants");
 
-async function findFile(filename) {
-  console.log(`${findFile.name}(${filename})`);
-  try {
-    const buffer = await fs.readFile(filename);
-    const json = buffer.toString();
-    const data = JSON.parse(json);
-    return { exists: true, filename, data };
-  } catch (error) {
-    console.log(error);
-    return { exists: false, filename, data: null };
-  }
-}
-
-class MtgData {
-  constructor(today) {
-    this.masterDir = `./data/${today}`;
-    this.ev = `${this.masterDir}/ev`;
-    this.products = `${this.masterDir}/products`;
-    this.prices = `${this.masterDir}/prices`;
-  }
-
-  async getMasterProducts() {
-    return (await findFile(`${this.masterDir}/master-products.json`)).data;
-  }
-
-  async getMasterProductEv(id, name) {
-    return await findFile(`${this.ev}/${id}-${name}.json`);
-  }
-
-  async getProduct(slug) {
-    return await findFile(`${this.products}/${slug}.json`);
-  }
-
-  async getProductPrices(slug) {
-    return await findFile(`${this.prices}/${slug}.json`);
-  }
-}
-
 async function main() {
-  const today = new Date().toJSON().split("T")[0];
-  // const today = "2022-06-05";
+  // const today = new Date().toJSON().split("T")[0];
+  const today = "2022-06-05";
   const mtgData = new MtgData(today);
 
-  const masterProducts = await mtgData.getMasterProducts();
+  const masterProducts = (await mtgData.getMasterProducts()).data;
 
+  // Get all annual anniversary dates for every product till 2022
   masterProducts.map((m) => {
     m.dateRange = [];
-    for (let i = 0; i < 50; i++) {
-      m.dateRange.push(new Date(new Date(m.date).setFullYear(new Date(m.date).getFullYear() + i)));
-    }
+    for (let i = 0; i < 30; i++) {
+      const date = new Date(new Date(m.date).setFullYear(new Date(m.date).getFullYear() + i));
 
+      if (date.getFullYear() <= "2022") m.dateRange.push(date);
+    }
+  });
+
+  // Assign parent id to product children
+  masterProducts.map((m) => {
     m.products.map((p) => (p.parentId = m.id));
   });
 
+  // Create an array with just products that are booster boxes
   const productList = masterProducts.reduce((p, c) => p.concat(...c.products.filter((item) => boxTypes.includes(item.name))), []);
+
+  // Create a hash table with keys 1-50 to save annual price data
   intervalLookup = {};
-  for (let i = 0; i <= 50; i++) {
+  for (let i = 0; i <= 30; i++) {
     intervalLookup[i] = [];
   }
 
-  for (const { parentId, slug } of productList) {
+  // Calculate needed date per set product
+  for (const product of productList) {
+    const { parentId, slug } = product;
     const parent = masterProducts.find((mp) => mp.id === parentId);
+    const prices = (await mtgData.getProductPrices(slug)).data;
 
-    const productPrices = await mtgData.getProductPrices(slug);
+    product.childPrices = [];
+    parent.dateRange.forEach((anniversaryDate, i) => {
+      const anniversaryDateUnix = new Date(anniversaryDate).getTime();
+      const anniversaryMarketData = prices.average.find((f) => f[0] === anniversaryDateUnix);
 
-    if (productPrices.exists === true) {
-      const childPrices = [];
-      parent.dateRange.forEach((d, i) => {
-        const p = new Date(d).getTime();
-        const s = productPrices.data.market.find((f) => f[0] === p);
-        if (s) {
-          console.log(slug, new Date(s[0]), s[1]);
-        }
-        const data = { year: i + 1, price: s ? s[1] : null, change: s ? ((s[1] - msrpLookup[slug]) / msrpLookup[slug]) * 100 : null };
-        childPrices.push(data);
+      if (anniversaryMarketData) {
+        const data = {
+          year: i,
+          date: new Date(anniversaryMarketData[0]).toJSON().split("T")[0],
+          price: anniversaryMarketData[1],
+          change: ((anniversaryMarketData[1] - msrpLookup[slug]) / msrpLookup[slug]) * 100,
+        };
+        product.childPrices.push(data);
+        intervalLookup[i].push({ slug, change: data.change });
+      }
+    });
 
-        if (data.price !== null) {
-          intervalLookup[i].push({ [slug]: data.change });
-        }
-      });
-
-      //console.log(parent.name, name, new Date(parent.date));
-      // childPrices.forEach(({ year, price, change }) => {
-      //   if (year === 5) {
-      //     price ? console.log(year, price, change.toFixed(2) + "%") : "";
-      //   }
-      // });
-    }
+    //console.log(parent.name, name, new Date(parent.date));
+    // childPrices.forEach(({ year, price, change }) => {
+    //   if (year === 5) {
+    //     price ? console.log(year, price, change.toFixed(2) + "%") : "";
+    //   }
+    // });
   }
 
-  Object.keys(intervalLookup).map((key) => {
-    console.log(key, intervalLookup[key]);
-  });
+  // console.log(productList[50]);
+  console.log(intervalLookup);
 
-  // Object.keys(intervalLookup).map((key) => {
-  //   const average = intervalLookup[key].reduce((p, c) => (p += c.change), 0) / intervalLookup[key].length;
-  //   console.log(parseInt(key) + 1, average.toFixed(2) + "%");
+  // Show all intervals for each set
+  // productList.forEach(({ slug, childPrices }) => {
+  //   console.log(slug);
+  //   childPrices.forEach((item) => console.log(item));
   // });
 
+  // Show all sets for each interval
+  // Object.keys(intervalLookup).map((key) => {
+  //   if (intervalLookup[key].length > 0) console.log(key, intervalLookup[key]);
+  // });
+
+  // Show the average of sets for each interval
+  Object.keys(intervalLookup).map((key) => {
+    const average = intervalLookup[key].reduce((p, c) => (p += c.change), 0) / intervalLookup[key].length;
+    console.log(parseInt(key) + 1, average.toFixed(2) + "%");
+  });
+
+  // Show the latest market price for each set
   // const boxByPrice = []
   // for (const { id, name, slug } of productList) {
-  //   const product = await mtgData.getProduct(slug);
+  //   const product = (await mtgData.getProduct(slug)).data;
   //   boxByPrice.push({
   //     id,
   //     name,
   //     slug,
-  //     latestMarketPrice: product.data ? product.data.latestPrice.market : 0,
+  //     latestMarketPrice: product ? product.latestPrice.market : 0,
   //   });
   // }
 

@@ -24,7 +24,7 @@ const msrpLookup = {
   "3196-streets-of-new-capenna-set-booster-display": 100,
   "3193-streets-of-new-capenna-draft-booster-box": 90,
   "2885-kamigawa-neon-dynasty-collector-booster-display": 180,
-  "2883-kamigawa-neon-dynasty-set-booster-display": 140,
+  "2883-kamigawa-neon-dynasty-set-booster-display": 120,
   "2880-kamigawa-neon-dynasty-draft-booster-box": 90,
   "2877-innistrad-double-feature-draft-booster-box": 175,
   "2017-innistrad-crimson-vow-collector-booster-display": 180,
