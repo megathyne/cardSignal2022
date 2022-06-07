@@ -88,6 +88,7 @@ const msrpLookup = {
   "180-fate-reforged-booster-box": 90,
   "265-khans-of-tarkir-booster-box": 90,
   "317-magic-2015-m15-booster-box": 90,
+  "2-conspiracy-booster-box": 90,
   "248-journey-into-nyx-booster-box": 90,
   "41-born-of-the-gods-booster-box": 90,
   "508-theros-booster-box": 90,
