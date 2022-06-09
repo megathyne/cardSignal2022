@@ -3,7 +3,7 @@ const { boxTypes, msrpLookup } = require("./constants");
 
 async function main() {
   // const today = new Date().toJSON().split("T")[0];
-  const today = "2022-06-08";
+  const today = "2022-06-05";
   const mtgData = new MtgData(today);
 
   const masterProducts = (await mtgData.getMasterProducts()).data;
@@ -24,6 +24,10 @@ async function main() {
     }
   });
 
+  masterProducts.forEach((item) => {
+    console.log(item.name, item.dateRange[0], item.dateRange.length - 1);
+  });
+
   // Assign parent id to product children
   masterProducts.map((m) => {
     m.products.map((p) => (p.parentId = m.id));
@@ -38,52 +42,52 @@ async function main() {
     intervalLookup[i] = { low: [], average: [], high: [], market: [] };
   }
 
-  // Calculate needed date per set product
+  // Calculate needed data per set product
   for (const product of productList) {
     const { parentId, slug } = product;
     const parent = masterProducts.find((mp) => mp.id === parentId);
-    const prices = (await mtgData.getProductPrices(slug)).data;
 
     product.childPrices = { low: [], average: [], high: [], market: [] };
-    parent.dateRange.forEach((anniversaryDate, i) => {
-      const anniversaryDateUnix = new Date(anniversaryDate).getTime();
-      const date = anniversaryDate.toJSON().split("T")[0];
-      const year = i;
+    const prices = (await mtgData.getProductPrices(slug)).data;
 
-      const averageData = prices.average.find((f) => f[0] === anniversaryDateUnix);
-      if (averageData) {
-        const price = averageData[1];
-        const change = ((price - msrpLookup[slug]) / msrpLookup[slug]) * 100;
-        const data = { year, date, price, change };
+    if (prices) {
+      parent.dateRange.forEach((anniversaryDate, year) => {
+        const anniversaryDateUnix = new Date(anniversaryDate).getTime();
+        const date = anniversaryDate.toJSON().split("T")[0];
 
-        product.childPrices.average.push(data);
-        intervalLookup[i].average.push({ slug, change: data.change });
-      }
+        const priceTypes = ["average", "low", "high", "market"];
+        for (const type of priceTypes) {
+          let postion = null;
+          const data = prices[type].find((f, i) => {
+            position = i;
+            return f[0] === anniversaryDateUnix;
+          });
+          if (data) {
+            let price;
+            if (year === 0) {
+              // Simple Case
+              price = data[1];
+            } else {
+              let startPosition = position - 15;
+              const endPosition = position + 15;
+              const priceContainer = [];
+              while (startPosition < endPosition) {
+                const d = prices[type][startPosition];
+                if (d) {
+                  priceContainer.push(d[1]);
+                }
+                startPosition++;
+              }
+              price = priceContainer.reduce((p, c) => (p += c), 0) / priceContainer.length;
+            }
 
-      const lowData = prices.low.find((f) => f[0] === anniversaryDateUnix);
-      if (lowData) {
-        const price = lowData[1];
-        const change = ((price - msrpLookup[slug]) / msrpLookup[slug]) * 100;
-        product.childPrices.low.push({ year, date, price, change });
-        intervalLookup[i].low.push({ slug, change });
-      }
-
-      const highData = prices.high.find((f) => f[0] === anniversaryDateUnix);
-      if (highData) {
-        const price = highData[1];
-        const change = ((price - msrpLookup[slug]) / msrpLookup[slug]) * 100;
-        product.childPrices.high.push({ year, date, price, change });
-        intervalLookup[i].high.push({ slug, change });
-      }
-
-      const marketData = prices.market.find((f) => f[0] === anniversaryDateUnix);
-      if (marketData) {
-        const price = marketData[1];
-        const change = ((price - msrpLookup[slug]) / msrpLookup[slug]) * 100;
-        product.childPrices.market.push({ year, date, price, change });
-        intervalLookup[i].market.push({ slug, change });
-      }
-    });
+            const change = ((price - msrpLookup[slug]) / msrpLookup[slug]) * 100;
+            product.childPrices[type].push({ year, date, price, change });
+            intervalLookup[year][type].push({ slug, change });
+          }
+        }
+      });
+    }
   }
 
   // Show all intervals for each set
