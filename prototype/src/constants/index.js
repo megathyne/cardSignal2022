@@ -5,7 +5,7 @@ const COLLECTOR_BB = "Collector Booster Box";
 const COLLECTOR_BD = "Collector Booster Display";
 const CLASSIC_BB = "Booster Box";
 
-const boxTypes = [SET_BB, SET_BD, DRAFT_BB, COLLECTOR_BB, COLLECTOR_BD, CLASSIC_BB];
+const boxTypes = [SET_BB, SET_BD, DRAFT_BB, CLASSIC_BB];
 
 /**
  * booster packs 2.99 till "553-urza-s-destiny-booster-box"

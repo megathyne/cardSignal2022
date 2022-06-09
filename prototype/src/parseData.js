@@ -3,7 +3,7 @@ const { boxTypes, msrpLookup } = require("./constants");
 
 async function main() {
   // const today = new Date().toJSON().split("T")[0];
-  const today = "2022-06-07";
+  const today = "2022-06-08";
   const mtgData = new MtgData(today);
 
   const masterProducts = (await mtgData.getMasterProducts()).data;
@@ -12,9 +12,15 @@ async function main() {
   masterProducts.map((m) => {
     m.dateRange = [];
     for (let i = 0; i < 29; i++) {
-      const date = new Date(new Date(m.date).setFullYear(new Date(m.date).getFullYear() + i));
-
-      if (date.getFullYear() <= "2022") m.dateRange.push(date);
+      // Need to add 30 days to year zero to give prices time to stabilize
+      if (i === 0) {
+        const releasePlus30 = new Date(m.date);
+        releasePlus30.setDate(new Date(releasePlus30).getDate() + 30);
+        m.dateRange.push(releasePlus30);
+      } else {
+        const anniversaryDate = new Date(new Date(m.date).setFullYear(new Date(m.date).getFullYear() + i));
+        if (anniversaryDate.getFullYear() <= "2022") m.dateRange.push(anniversaryDate);
+      }
     }
   });
 
@@ -58,27 +64,24 @@ async function main() {
       if (lowData) {
         const price = lowData[1];
         const change = ((price - msrpLookup[slug]) / msrpLookup[slug]) * 100;
-        const data = { year, date, price, change };
-        product.childPrices.low.push(data);
-        intervalLookup[i].low.push({ slug, change: data.change });
+        product.childPrices.low.push({ year, date, price, change });
+        intervalLookup[i].low.push({ slug, change });
       }
 
       const highData = prices.high.find((f) => f[0] === anniversaryDateUnix);
       if (highData) {
         const price = highData[1];
         const change = ((price - msrpLookup[slug]) / msrpLookup[slug]) * 100;
-        const data = { year, date, price, change };
-        product.childPrices.high.push(data);
-        intervalLookup[i].high.push({ slug, change: data.change });
+        product.childPrices.high.push({ year, date, price, change });
+        intervalLookup[i].high.push({ slug, change });
       }
 
       const marketData = prices.market.find((f) => f[0] === anniversaryDateUnix);
       if (marketData) {
         const price = marketData[1];
         const change = ((price - msrpLookup[slug]) / msrpLookup[slug]) * 100;
-        const data = { year, date, price, change };
-        product.childPrices.market.push(data);
-        intervalLookup[i].market.push({ slug, change: data.change });
+        product.childPrices.market.push({ year, date, price, change });
+        intervalLookup[i].market.push({ slug, change });
       }
     });
   }
@@ -98,22 +101,46 @@ async function main() {
   async function intervalDetails() {
     Object.keys(intervalLookup).map((key) => {
       console.log(key + " :");
-      if (intervalLookup[key].low.length > 0) console.log("low", intervalLookup[key]);
-      if (intervalLookup[key].average.length > 0) console.log("average", intervalLookup[key]);
-      if (intervalLookup[key].high.length > 0) console.log("high", intervalLookup[key]);
-      if (intervalLookup[key].market.length > 0) console.log("market", intervalLookup[key]);
+      if (intervalLookup[key].low.length > 0)
+        console.log(
+          "low",
+          intervalLookup[key].low
+            .sort((a, b) => (a.change > b.change ? 1 : -1))
+            .map(({ slug, change }) => ({ [slug]: change.toFixed(2) + "%" }))
+        );
+      if (intervalLookup[key].average.length > 0)
+        console.log(
+          "average",
+          intervalLookup[key].average
+            .sort((a, b) => (a.change > b.change ? 1 : -1))
+            .map(({ slug, change }) => ({ [slug]: change.toFixed(2) + "%" }))
+        );
+      if (intervalLookup[key].high.length > 0)
+        console.log(
+          "high",
+          intervalLookup[key].high
+            .sort((a, b) => (a.change > b.change ? 1 : -1))
+            .map(({ slug, change }) => ({ [slug]: change.toFixed(2) + "%" }))
+        );
+      if (intervalLookup[key].market.length > 0)
+        console.log(
+          "market",
+          intervalLookup[key].market
+            .sort((a, b) => (a.change > b.change ? 1 : -1))
+            .map(({ slug, change }) => ({ [slug]: change.toFixed(2) + "%" }))
+        );
     });
   }
 
   // Show the average of sets for each interval
   async function viewOverallChange() {
-    console.log("year, average, low, high, market");
+    console.log("year, average, low, market");
     Object.keys(intervalLookup).map((key) => {
       const average = intervalLookup[key].average.reduce((p, c) => (p += c.change), 0) / intervalLookup[key].average.length;
       const low = intervalLookup[key].low.reduce((p, c) => (p += c.change), 0) / intervalLookup[key].low.length;
-      const high = intervalLookup[key].high.reduce((p, c) => (p += c.change), 0) / intervalLookup[key].high.length;
+      // const high = intervalLookup[key].high.reduce((p, c) => (p += c.change), 0) / intervalLookup[key].high.length;
       const market = intervalLookup[key].market.reduce((p, c) => (p += c.change), 0) / intervalLookup[key].market.length;
-      console.log(parseInt(key), `${average.toFixed(2)}%`, `${low.toFixed(2)}%`, `${high.toFixed(2)}%`, `${market.toFixed(2)}%`);
+      console.log(parseInt(key), `${average.toFixed(2)}%`, `${low.toFixed(2)}%`, `${market.toFixed(2)}%`);
     });
   }
 
@@ -123,7 +150,7 @@ async function main() {
     Object.keys(intervalLookup).map((key) => {
       intervalLookup[key].average.sort((a, b) => (a.change > b.change ? 1 : -1));
       intervalLookup[key].low.sort((a, b) => (a.change > b.change ? 1 : -1));
-      intervalLookup[key].high.sort((a, b) => (a.change > b.change ? 1 : -1));
+      // intervalLookup[key].high.sort((a, b) => (a.change > b.change ? 1 : -1));
       intervalLookup[key].market.sort((a, b) => (a.change > b.change ? 1 : -1));
     });
     console.log(intervalLookup[interval]);
@@ -134,12 +161,8 @@ async function main() {
     const boxByPrice = [];
     for (const { id, name, slug } of productList) {
       const product = (await mtgData.getProduct(slug)).data;
-      boxByPrice.push({
-        id,
-        name,
-        slug,
-        latestMarketPrice: product ? product.latestPrice.market : 0,
-      });
+      const latestMarketPrice = product ? product.latestPrice.market : 0;
+      boxByPrice.push({ id, name, slug, latestMarketPrice });
     }
     boxByPrice
       .filter(({ latestMarketPrice }) => latestMarketPrice >= fromPrice && latestMarketPrice <= toPrice)
@@ -153,13 +176,8 @@ async function main() {
     for (const { id, name, slug, parentId } of productList) {
       const product = (await mtgData.getProduct(slug)).data;
       const { date } = masterProducts.find((mp) => mp.id === parentId);
-      boxByAge.push({
-        id,
-        name,
-        date,
-        slug,
-        latestMarketPrice: product ? product.latestPrice.market : 0,
-      });
+      const latestMarketPrice = product ? product.latestPrice.market : 0;
+      boxByAge.push({ id, name, date, slug, latestMarketPrice });
     }
     boxByAge
       .filter(({ latestMarketPrice }) => latestMarketPrice >= fromPrice && latestMarketPrice <= toPrice)
@@ -167,12 +185,25 @@ async function main() {
       .forEach(({ slug, latestMarketPrice, date }) => console.log(slug, new Date(date).toJSON(), latestMarketPrice));
   }
 
-  // intervalsBySet()
-  // intervalDetails()
-  // viewOverallChange();
-  // viewInterval(3);
+  // Show all intervals for a product slug
+  async function intervalsByProductSlug(slug) {
+    const product = productList.find((f) => f.slug === slug);
+    console.log(product.slug);
+    product.childPrices.low.forEach((item) => console.log("low", item));
+    product.childPrices.average.forEach((item) => console.log("average", item));
+    //  product.childPrices.high.forEach((item) => console.log("high", item));
+    product.childPrices.market.forEach((item) => console.log("market", item));
+  }
+
+  // intervalsByProductSlug("606-war-of-the-spark-booster-box");
+  // intervalsBySet();
+  // intervalDetails();
+  viewOverallChange();
+  // viewInterval(4);
   // latestMarketPricePerSet(50, 200);
-  setPriceByAge(50, 100);
+  // setPriceByAge(50, 200);
 }
 
 main();
+
+// 30 days before and after 30 for anniversary past inital
