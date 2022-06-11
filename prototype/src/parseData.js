@@ -1,53 +1,57 @@
 const { MtgData } = require("./lib");
-const { boxTypes, msrpLookup } = require("./constants");
+const { boxTypes, msrpLookup, priceTypes } = require("./constants");
+const MAX_DATA_PERIOD = 29;
+
+async function getAndPrepMasterProductList(mtgData) {
+  // Get All Master Products
+  const masterProducts = (await mtgData.getMasterProducts()).data;
+  return masterProducts.map((m) => {
+    m.dateRange = [];
+    // Get all annual anniversary dates for every product till 2022
+    for (let i = 0; i < MAX_DATA_PERIOD; i++) {
+      const anniversaryDate = new Date(new Date(m.date).setFullYear(new Date(m.date).getFullYear() + i));
+      if (anniversaryDate.getFullYear() <= "2022") m.dateRange.push(anniversaryDate);
+    }
+    m.products.map((p) => {
+      // Also mutate each product and assign parent id to product children
+      p.parentId = m.id;
+      // Also create a container to store prices
+      p.childPrices = { low: [], average: [], market: [] };
+      return p;
+    });
+    return m;
+  });
+}
 
 async function main() {
-  // const today = new Date().toJSON().split("T")[0];
-  const today = "2022-06-05";
-  const mtgData = new MtgData(today);
+  // TODAY: new Date().toJSON().split("T")[0];
+  const mtgData = new MtgData("2022-06-08");
 
-  const masterProducts = (await mtgData.getMasterProducts()).data;
-
-  // Get all annual anniversary dates for every product till 2022
-  masterProducts.map((m) => {
-    m.dateRange = [];
-    for (let i = 0; i < 29; i++) {
-      // Need to add 30 days to year zero to give prices time to stabilize
-      if (i === 0) {
-        const releasePlus30 = new Date(m.date);
-        releasePlus30.setDate(new Date(releasePlus30).getDate() + 30);
-        m.dateRange.push(releasePlus30);
-      } else {
-        const anniversaryDate = new Date(new Date(m.date).setFullYear(new Date(m.date).getFullYear() + i));
-        if (anniversaryDate.getFullYear() <= "2022") m.dateRange.push(anniversaryDate);
-      }
-    }
-  });
-
-  masterProducts.forEach((item) => {
-    console.log(item.name, item.dateRange[0], item.dateRange.length - 1);
-  });
-
-  // Assign parent id to product children
-  masterProducts.map((m) => {
-    m.products.map((p) => (p.parentId = m.id));
-  });
+  const masterProducts = await getAndPrepMasterProductList(mtgData);
 
   // Create an array with just products that are booster boxes
-  const productList = masterProducts.reduce((p, c) => p.concat(...c.products.filter((item) => boxTypes.includes(item.name))), []);
+  const productList = masterProducts.reduce(
+    (p, c) =>
+      p.concat(
+        ...c.products
+          .filter((item) => boxTypes.includes(item.name))
+          .map((item) => {
+            item.releaseDate = c.date;
+            return item;
+          })
+      ),
+    []
+  );
 
   // Create a hash table with keys 1-50 to save annual price data
   const intervalLookup = {};
-  for (let i = 0; i <= 29; i++) {
-    intervalLookup[i] = { low: [], average: [], high: [], market: [] };
+  for (let i = 0; i <= MAX_DATA_PERIOD; i++) {
+    intervalLookup[i] = { low: [], average: [], market: [] };
   }
 
   // Calculate needed data per set product
-  for (const product of productList) {
-    const { parentId, slug } = product;
+  for (const { parentId, slug, childPrices } of productList) {
     const parent = masterProducts.find((mp) => mp.id === parentId);
-
-    product.childPrices = { low: [], average: [], high: [], market: [] };
     const prices = (await mtgData.getProductPrices(slug)).data;
 
     if (prices) {
@@ -55,35 +59,24 @@ async function main() {
         const anniversaryDateUnix = new Date(anniversaryDate).getTime();
         const date = anniversaryDate.toJSON().split("T")[0];
 
-        const priceTypes = ["average", "low", "high", "market"];
         for (const type of priceTypes) {
-          let postion = null;
-          const data = prices[type].find((f, i) => {
-            position = i;
-            return f[0] === anniversaryDateUnix;
-          });
-          if (data) {
-            let price;
+          let price;
+
+          const index = prices[type].findIndex((x) => x[0] === anniversaryDateUnix);
+          if (index !== -1) {
             if (year === 0) {
-              // Simple Case
-              price = data[1];
+              price = prices[type][index + 30][1];
             } else {
-              let startPosition = position - 15;
-              const endPosition = position + 15;
-              const priceContainer = [];
-              while (startPosition < endPosition) {
-                const d = prices[type][startPosition];
-                if (d) {
-                  priceContainer.push(d[1]);
-                }
-                startPosition++;
-              }
-              price = priceContainer.reduce((p, c) => (p += c), 0) / priceContainer.length;
+              const startPosition = index - (parent.dateRange.length - 1);
+              const endPosition = index + (parent.dateRange.length - 1);
+
+              const priceContainer = prices[type].filter((f, i) => i > startPosition && i < endPosition);
+              price = priceContainer.reduce((p, c) => (p += c[1]), 0) / priceContainer.length;
             }
 
             const change = ((price - msrpLookup[slug]) / msrpLookup[slug]) * 100;
-            product.childPrices[type].push({ year, date, price, change });
-            intervalLookup[year][type].push({ slug, change });
+            childPrices[type].push({ year, date, price, change });
+            intervalLookup[year][type].push({ slug, date, price, change });
           }
         }
       });
@@ -94,10 +87,10 @@ async function main() {
   async function intervalsBySet() {
     productList.forEach((product) => {
       console.log(product.slug);
-      product.childPrices.low.forEach((item) => console.log("low", item));
-      product.childPrices.average.forEach((item) => console.log("average", item));
-      product.childPrices.high.forEach((item) => console.log("high", item));
-      product.childPrices.market.forEach((item) => console.log("market", item));
+      product.childPrices["market"].forEach((item) => console.log("market", item));
+      // for (const type of priceTypes) {
+      //   product.childPrices[type].forEach((item) => console.log(type, item));
+      // }
     });
   }
 
@@ -105,34 +98,16 @@ async function main() {
   async function intervalDetails() {
     Object.keys(intervalLookup).map((key) => {
       console.log(key + " :");
-      if (intervalLookup[key].low.length > 0)
-        console.log(
-          "low",
-          intervalLookup[key].low
-            .sort((a, b) => (a.change > b.change ? 1 : -1))
-            .map(({ slug, change }) => ({ [slug]: change.toFixed(2) + "%" }))
-        );
-      if (intervalLookup[key].average.length > 0)
-        console.log(
-          "average",
-          intervalLookup[key].average
-            .sort((a, b) => (a.change > b.change ? 1 : -1))
-            .map(({ slug, change }) => ({ [slug]: change.toFixed(2) + "%" }))
-        );
-      if (intervalLookup[key].high.length > 0)
-        console.log(
-          "high",
-          intervalLookup[key].high
-            .sort((a, b) => (a.change > b.change ? 1 : -1))
-            .map(({ slug, change }) => ({ [slug]: change.toFixed(2) + "%" }))
-        );
-      if (intervalLookup[key].market.length > 0)
-        console.log(
-          "market",
-          intervalLookup[key].market
-            .sort((a, b) => (a.change > b.change ? 1 : -1))
-            .map(({ slug, change }) => ({ [slug]: change.toFixed(2) + "%" }))
-        );
+      for (const type of priceTypes) {
+        if (intervalLookup[key][type].length > 0) {
+          console.log(
+            type,
+            intervalLookup[key].type
+              .sort((a, b) => (a.change > b.change ? 1 : -1))
+              .map(({ slug, change }) => ({ [slug]: change.toFixed(2) + "%" }))
+          );
+        }
+      }
     });
   }
 
@@ -142,7 +117,6 @@ async function main() {
     Object.keys(intervalLookup).map((key) => {
       const average = intervalLookup[key].average.reduce((p, c) => (p += c.change), 0) / intervalLookup[key].average.length;
       const low = intervalLookup[key].low.reduce((p, c) => (p += c.change), 0) / intervalLookup[key].low.length;
-      // const high = intervalLookup[key].high.reduce((p, c) => (p += c.change), 0) / intervalLookup[key].high.length;
       const market = intervalLookup[key].market.reduce((p, c) => (p += c.change), 0) / intervalLookup[key].market.length;
       console.log(parseInt(key), `${average.toFixed(2)}%`, `${low.toFixed(2)}%`, `${market.toFixed(2)}%`);
     });
@@ -152,10 +126,9 @@ async function main() {
   async function viewInterval(interval) {
     // Sort by change
     Object.keys(intervalLookup).map((key) => {
-      intervalLookup[key].average.sort((a, b) => (a.change > b.change ? 1 : -1));
-      intervalLookup[key].low.sort((a, b) => (a.change > b.change ? 1 : -1));
-      // intervalLookup[key].high.sort((a, b) => (a.change > b.change ? 1 : -1));
-      intervalLookup[key].market.sort((a, b) => (a.change > b.change ? 1 : -1));
+      for (const type of priceTypes) {
+        intervalLookup[key][type].sort((a, b) => (a.change > b.change ? 1 : -1));
+      }
     });
     console.log(intervalLookup[interval]);
   }
@@ -174,6 +147,7 @@ async function main() {
       .forEach(({ slug, latestMarketPrice }) => console.log(slug, latestMarketPrice));
   }
 
+  // View set's prices by age
   async function setPriceByAge(fromPrice, toPrice) {
     const masterProducts = (await mtgData.getMasterProducts()).data;
     const boxByAge = [];
@@ -193,21 +167,63 @@ async function main() {
   async function intervalsByProductSlug(slug) {
     const product = productList.find((f) => f.slug === slug);
     console.log(product.slug);
-    product.childPrices.low.forEach((item) => console.log("low", item));
-    product.childPrices.average.forEach((item) => console.log("average", item));
-    //  product.childPrices.high.forEach((item) => console.log("high", item));
-    product.childPrices.market.forEach((item) => console.log("market", item));
+    for (const type of priceTypes) {
+      product.childPrices[type].forEach((item) => console.log(type, item));
+    }
   }
 
+  async function currentGains() {
+    const output = [];
+    for (const { name, parentId, slug, releaseDate } of productList) {
+      const prices = (await mtgData.getProductPrices(slug)).data;
+
+      let price = 0;
+      if (prices.market.length > 0) {
+        price = prices.market[prices.market.length - 1];
+      } else if (prices.low.length > 0) {
+        price = prices.low[prices.low.length - 1];
+      }
+
+      const firstDate = new Date(releaseDate);
+      const lastDate = new Date(price[0]);
+
+      const age = lastDate.getFullYear() - firstDate.getFullYear();
+      const change = ((price[1] - msrpLookup[slug]) / msrpLookup[slug]) * 100;
+
+      const changePerYear = change / age;
+      output.push({
+        slug,
+        releaseDate: firstDate,
+        msrp: msrpLookup[slug],
+        lastPriceDate: lastDate,
+        lastPrice: price[1],
+        change: change.toFixed(2) + "%",
+        age,
+        changePerYear: changePerYear.toFixed(2) + "%",
+      });
+    }
+
+    const items = output;
+    const replacer = (key, value) => (value === null ? "" : value); // specify how you want to handle null values here
+    const header = Object.keys(items[0]);
+    const csv = [
+      header.join(","), // header row first
+      ...items.map((row) => header.map((fieldName) => JSON.stringify(row[fieldName], replacer)).join(",")),
+    ].join("\r\n");
+
+    console.log(csv);
+  }
+
+  async function findTimeToLowestPrice() {}
+
+  currentGains();
   // intervalsByProductSlug("606-war-of-the-spark-booster-box");
   // intervalsBySet();
   // intervalDetails();
-  viewOverallChange();
+  // viewOverallChange();
   // viewInterval(4);
   // latestMarketPricePerSet(50, 200);
   // setPriceByAge(50, 200);
 }
 
 main();
-
-// 30 days before and after 30 for anniversary past inital
