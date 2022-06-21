@@ -1,7 +1,7 @@
 const fs = require("fs/promises");
 const axios = require("axios");
 const { setTimeout } = require("timers/promises");
-const { boxTypes } = require("./constants");
+const { boxTypes } = require("./src/constants");
 
 class MtgStocks {
   baseUrl = `https://api.mtgstocks.com`;

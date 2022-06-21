@@ -1,4 +1,4 @@
-const { MtgData } = require("./lib");
+const { MtgData, Product } = require("./lib");
 const { boxTypes, msrpLookup, priceTypes } = require("./constants");
 const MAX_DATA_PERIOD = 29;
 
@@ -23,10 +23,28 @@ async function getAndPrepMasterProductList(mtgData) {
   });
 }
 
+let newLookup = {};
 async function main() {
-  // TODAY: new Date().toJSON().split("T")[0];
-  const mtgData = new MtgData("2022-06-08");
+  const today = "2022-06-05";
+  const mtgData = new MtgData(today);
+  const masterProducts = (await mtgData.getMasterProducts()).data;
 
+  for (const set of masterProducts) {
+    const products = set.products.filter((item) => boxTypes.includes(item.name));
+
+    for (const productRaw of products) {
+      const product = new Product(today, set, productRaw);
+      await product.init();
+      newLookup[productRaw.slug] = product;
+    }
+  }
+
+  console.log(newLookup["958-adventures-in-the-forgotten-realms-draft-booster-box"]);
+}
+
+async function mainOld() {
+  // TODAY: new Date().toJSON().split("T")[0];
+  const mtgData = new MtgData("2022-06-11");
   const masterProducts = await getAndPrepMasterProductList(mtgData);
 
   // Create an array with just products that are booster boxes
@@ -65,7 +83,8 @@ async function main() {
           const index = prices[type].findIndex((x) => x[0] === anniversaryDateUnix);
           if (index !== -1) {
             if (year === 0) {
-              price = prices[type][index + 30][1];
+              if (prices[type].length >= index + 30) price = prices[type][index + 30][1];
+              else price = prices[type][prices[type].length - 1][1];
             } else {
               const startPosition = index - (parent.dateRange.length - 1);
               const endPosition = index + (parent.dateRange.length - 1);
@@ -172,12 +191,103 @@ async function main() {
     }
   }
 
+  async function anniversaryGains(slug, anniversaryDates) {
+    const anniversaryDatesUnix = anniversaryDates.map((date) => new Date(date).getTime());
+    const msrp = msrpLookup[slug];
+
+    const prices = (await mtgData.getProductPrices(slug)).data;
+
+    const output = [];
+    for (let i = 1; i <= anniversaryDatesUnix.length; i++) {
+      let mp, lp, ap;
+      if (prices.market) mp = prices.market.find((mp) => mp[0] === anniversaryDatesUnix[i]);
+      if (prices.low) lp = prices.low.find((lp) => lp[0] === anniversaryDatesUnix[i]);
+      if (prices.average) ap = prices.average.find((ap) => ap[0] === anniversaryDatesUnix[i]);
+
+      if (mp) output.push(mp);
+      else if (lp) output.push(lp);
+      else if (ap) output.push(ap);
+      else output.push([null, null]);
+    }
+
+    console.log(slug, output);
+    for (let i = 0; i <= output.length - 1; i++) {
+      if (i == 0) {
+        const fromDate = anniversaryDates[i].toJSON().split("T")[0];
+        const toDate = anniversaryDates[i + 1].toJSON().split("T")[0];
+        const change = ((output[i][1] - msrpLookup[slug]) / msrpLookup[slug]) * 100;
+
+        console.log(fromDate, toDate, change.toFixed(2), msrpLookup[slug], output[i][1]);
+      } else {
+        const fromDate = anniversaryDates[i].toJSON().split("T")[0];
+        const toDate = anniversaryDates[i + 1].toJSON().split("T")[0];
+        const change = ((output[i][1] - output[i - 1][1]) / output[i - 1][1]) * 100;
+        console.log(fromDate, toDate, change.toFixed(2), output[i - 1][1], output[i][1]);
+      }
+    }
+  }
+
+  async function ytd() {
+    const output = [];
+    for (const { name, parentId, slug, releaseDate } of productList) {
+      const fromDate = new Date("2022-01-01").getTime();
+      const toDate = new Date("2022-06-10").getTime();
+
+      const prices = (await mtgData.getProductPrices(slug)).data;
+      if (prices.average) {
+        const fromMp = prices.average.find((f) => f[0] === fromDate);
+        const toMp = prices.average.find((f) => f[0] === toDate);
+
+        if (fromMp && toMp) {
+          const change = ((toMp[1] - fromMp[1]) / fromMp[1]) * 100;
+          console.log(slug, change);
+          output.push(change);
+        }
+      }
+    }
+    const average = output.reduce((p, c) => (p += c), 0) / output.length;
+    console.log("Average: ", average.toFixed(2) + "%");
+    const winners = output.filter((f) => f > 0);
+    console.log("Number of Winners: ", winners.length);
+    const losers = output.filter((f) => f > 0);
+    console.log("Number of Losers: ", losers.length);
+  }
+
+  async function PastYear() {
+    const output = [];
+    for (const { name, parentId, slug, releaseDate } of productList) {
+      const fromDate = new Date("2021-06-10").getTime();
+      const toDate = new Date("2022-06-10").getTime();
+
+      const prices = (await mtgData.getProductPrices(slug)).data;
+      if (prices.market) {
+        const fromMp = prices.market.find((f) => f[0] === fromDate);
+        const toMp = prices.market.find((f) => f[0] === toDate);
+
+        if (fromMp && toMp) {
+          const change = ((toMp[1] - fromMp[1]) / fromMp[1]) * 100;
+          console.log(slug, change);
+          output.push(change);
+        }
+      }
+    }
+    const average = output.reduce((p, c) => (p += c), 0) / output.length;
+    console.log("Average: ", average.toFixed(2) + "%");
+    const winners = output.filter((f) => f > 0);
+    console.log("Number of Winners: ", winners.length);
+    const losers = output.filter((f) => f > 0);
+    console.log("Number of Losers: ", losers.length);
+  }
+
   async function currentGains() {
     const output = [];
     for (const { name, parentId, slug, releaseDate } of productList) {
+      const anniversaryDates = masterProducts.find((mp) => mp.id === parentId).dateRange;
+      const annualPrices = anniversaryGains(slug, anniversaryDates);
+
       const prices = (await mtgData.getProductPrices(slug)).data;
 
-      let price = 0;
+      let price = [null, null];
       if (prices.market.length > 0) {
         price = prices.market[prices.market.length - 1];
       } else if (prices.low.length > 0) {
@@ -185,30 +295,29 @@ async function main() {
       }
 
       const firstDate = new Date(releaseDate);
-      const lastDate = new Date(price[0]);
+      const lastDate = price[0] ? new Date(price[0]) : null;
 
-      const age = lastDate.getFullYear() - firstDate.getFullYear();
-      const change = ((price[1] - msrpLookup[slug]) / msrpLookup[slug]) * 100;
+      const age = lastDate ? lastDate.getFullYear() - firstDate.getFullYear() : null;
+      const change = (price[1] - msrpLookup[slug]) / msrpLookup[slug];
+      const cagr = Math.pow(price[1] / msrpLookup[slug], 1 / age) - 1;
 
-      const changePerYear = change / age;
       output.push({
         slug,
-        releaseDate: firstDate,
+        releaseDate: firstDate.toJSON().split("T")[0],
         msrp: msrpLookup[slug],
-        lastPriceDate: lastDate,
+        lastPriceDate: lastDate ? lastDate.toJSON().split("T")[0] : null,
         lastPrice: price[1],
-        change: change.toFixed(2) + "%",
         age,
-        changePerYear: changePerYear.toFixed(2) + "%",
+        change,
+        cagr,
       });
     }
 
-    const items = output;
     const replacer = (key, value) => (value === null ? "" : value); // specify how you want to handle null values here
-    const header = Object.keys(items[0]);
+    const header = Object.keys(output[0]);
     const csv = [
       header.join(","), // header row first
-      ...items.map((row) => header.map((fieldName) => JSON.stringify(row[fieldName], replacer)).join(",")),
+      ...output.map((row) => header.map((fieldName) => JSON.stringify(row[fieldName], replacer)).join(",")),
     ].join("\r\n");
 
     console.log(csv);
@@ -216,7 +325,9 @@ async function main() {
 
   async function findTimeToLowestPrice() {}
 
-  currentGains();
+  // PastYear();
+  // ytd();
+  // currentGains();
   // intervalsByProductSlug("606-war-of-the-spark-booster-box");
   // intervalsBySet();
   // intervalDetails();

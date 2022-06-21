@@ -4,11 +4,12 @@
   "description": "",
   "main": "getSealedData.js",
   "scripts": {
-    "start": "node getData.js"
+    "start": "nodemon parseData.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^0.27.2",
+    "nodemon": "^2.0.16"
   }
 }
