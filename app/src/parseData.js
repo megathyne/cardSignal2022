@@ -1,6 +1,6 @@
 const { MtgData, Product } = require("./lib");
 const { boxTypes, msrpLookup, inventory } = require("./constants");
-const today = "2022-06-27";
+const today = "2022-06-28";
 
 async function processData() {
   let newLookup = {};
@@ -273,11 +273,11 @@ async function main() {
     { totalPaid: 0, totalValue: 0, totalCount: 0 }
   );
 
-  // foo.forEach((item) => {
-  //   item.items.sort((a, b) => (a.paidPerItem > b.paidPerItem ? 1 : -1));
-  //   console.log(item);
-  // });
-  console.log(foo);
+  foo.forEach((item) => {
+    item.items.sort((a, b) => (a.paidPerItem > b.paidPerItem ? 1 : -1));
+    console.log(item);
+  });
+  // console.log(foo);
   console.log(aggFoo);
 }
 

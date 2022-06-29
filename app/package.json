@@ -4,7 +4,7 @@
   "description": "",
   "main": "getSealedData.js",
   "scripts": {
-    "start": "nodemon parseData.js"
+    "start": "nodemon src/parseData.js"
   },
   "author": "",
   "license": "ISC",

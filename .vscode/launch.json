@@ -2,7 +2,7 @@
     "configurations": [
     {
         "name": "Debug Parse Data",
-        "program": "${workspaceFolder}/app/parseData.js",
+        "program": "${workspaceFolder}/app/src/parseData.js",
         "request": "launch",
         "skipFiles": [
             "<node_internals>/**"
