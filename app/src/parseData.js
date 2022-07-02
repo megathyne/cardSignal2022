@@ -1,6 +1,6 @@
 const { MtgData, Product } = require("./lib");
 const { boxTypes, msrpLookup, inventory } = require("./constants");
-const today = "2022-06-28";
+const today = "2022-07-02";
 
 async function processData() {
   let newLookup = {};
@@ -35,6 +35,10 @@ async function getLastPricesTotal(data, yearFilter, daysBack, setFilter) {
   return { total: lastPriceTotal.toFixed(2), count: lastPriceContainer.length };
 }
 
+function getGain(current, original) {
+  return ((current - original) / original) * 100;
+}
+
 async function getSetTotalGain(data, filter) {
   const output = [];
   for (const slug of filter) {
@@ -43,7 +47,7 @@ async function getSetTotalGain(data, filter) {
 
     if (current) {
       const age = 2022 - new Date(data[slug].set.date).getFullYear();
-      const change = ((current[1] - release) / release) * 100;
+      const change = getGain(current[1], release);
       output.push([slug, change, age]);
     }
   }
@@ -170,11 +174,11 @@ async function main() {
       if (data[1] > 0) {
         growthCount.up += 1;
       } else growthCount.down += 1;
-      console.log(data[0], data[1].toFixed(2) + "%", "$" + data[2].toFixed(2));
+      // console.log(data[0], data[1].toFixed(2) + "%", "$" + data[2].toFixed(2));
       growthCount.total += data[2];
     }
   });
-  console.log(growthCount);
+  // console.log(growthCount);
 
   const g = Object.keys(data).map((key) => [data[key].product.slug, data[key].productTotalGain, data[key].set.yearsOld]);
   const flatTotalGain = aggregate(g);
@@ -233,33 +237,39 @@ async function main() {
   inventory.map((item) => {
     item.paidPerItem = item.paid / item.quantity;
     item.valuePerItem = data[item.name].analyticPrices[0][1];
-    item.value = item.valuePerItem * item.quantity;
+    item.totalValue = item.valuePerItem * item.quantity;
   });
 
   const groupedInventory = inventory.reduce((p, c) => {
     if (p[c.name]) {
       p[c.name].totalPurchased += c.paid;
       p[c.name].totalquanity += c.quantity;
-      p[c.name].totalValue += c.value;
+      p[c.name].totalValue += c.totalValue;
       p[c.name].items.push(c);
     } else {
       p[c.name] = {
         totalPurchased: c.paid,
         totalquanity: c.quantity,
-        totalValue: c.value,
+        totalValue: c.totalValue,
         items: [c],
+        averageValue: c.valuePerItem,
+        averageCost: c.paidPerItem,
       };
     }
     return p;
   }, {});
 
   Object.keys(groupedInventory).map((m) => {
-    groupedInventory[m].averagePaid = groupedInventory[m].totalPurchased / groupedInventory[m].totalquanity;
+    const { totalPurchased, totalquanity, totalValue } = groupedInventory[m];
+
+    groupedInventory[m].averagePaid = totalPurchased / totalquanity;
+    groupedInventory[m].averageGain = getGain(totalValue, totalPurchased);
+    return groupedInventory[m];
   });
 
   // console.log(groupedInventory);
   const foo = Object.keys(groupedInventory)
-    .map((key) => ({ ...groupedInventory[key], name: key }))
+    .map((key) => ({ name: key, ...groupedInventory[key] }))
     // .sort((a, b) => (a.averagePaid > b.averagePaid ? 1 : -1));
     .sort((a, b) => (a.totalquanity > b.totalquanity ? -1 : 1));
 
@@ -273,12 +283,36 @@ async function main() {
     { totalPaid: 0, totalValue: 0, totalCount: 0 }
   );
 
-  foo.forEach((item) => {
-    item.items.sort((a, b) => (a.paidPerItem > b.paidPerItem ? 1 : -1));
-    console.log(item);
+  aggFoo.totalGainAmount = aggFoo.totalValue - aggFoo.totalPaid;
+  aggFoo.totalGainPercent = getGain(aggFoo.totalValue, aggFoo.totalPaid);
+
+  // foo.forEach((item) => {
+  //   item.items.sort((a, b) => (a.paidPerItem > b.paidPerItem ? 1 : -1));
+  //   console.log(item);
+  // });
+  foo.map((item) => {
+    item.percentPortfolio = (item.totalValue / aggFoo.totalValue) * 100;
   });
+
   // console.log(foo);
-  console.log(aggFoo);
+  foo.sort((a, b) => (a.percentPortfolio > b.percentPortfolio ? -1 : 1));
+  foo.forEach((item) => {
+    //console.log(item.percentPortfolio.toFixed(2) + "%", item.name);
+  });
+
+  foo.forEach((item) => {
+    console.log("$" + item.averageCost.toFixed(2), item.name);
+  });
+
+  console.log("==============   OVERVIEW =========");
+  console.log("Cost", "     Value", "     Quantity", "Amount Change", "Percent Change");
+  console.log(
+    aggFoo.totalPaid.toFixed(2) + "  ",
+    aggFoo.totalValue.toFixed(2) + "        ",
+    aggFoo.totalCount + "      ",
+    aggFoo.totalGainAmount.toFixed(2) + "        ",
+    aggFoo.totalGainPercent.toFixed(2)
+  );
 }
 
 main();
