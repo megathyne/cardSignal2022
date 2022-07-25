@@ -98,11 +98,11 @@ async function main() {
   }
 
   for (const masterProduct of masterProductList.data) {
-    let ev = await findFile(`${masterDir}/ev/${masterProduct.slug}.json`);
-    if (ev.exists === false) {
-      ev.data = await mtgStocks.getExpectedValue(masterProduct.id);
-      if (ev.data) await saveFile(ev.filename, ev.data);
-    }
+    // let ev = await findFile(`${masterDir}/ev/${masterProduct.slug}.json`);
+    // if (ev.exists === false) {
+    //   ev.data = await mtgStocks.getExpectedValue(masterProduct.id);
+    //   if (ev.data) await saveFile(ev.filename, ev.data);
+    // }
 
     for (const product of masterProduct.products.filter((item) => boxTypes.includes(item.name))) {
       let productDetails = await findFile(`${masterDir}/products/${product.slug}.json`);

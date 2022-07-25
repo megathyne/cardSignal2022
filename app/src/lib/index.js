@@ -140,7 +140,7 @@ class Product extends Set {
     if (startOfYear && current) {
       const gain = ((current[1] - startOfYear[1]) / startOfYear[1]) * 100;
       this.ytd = [this.product.slug, gain, current[1] - startOfYear[1]];
-    } else this.ytd = null;
+    } else this.ytd = [null, null, null];
   }
 
   async getSetTotalGain() {

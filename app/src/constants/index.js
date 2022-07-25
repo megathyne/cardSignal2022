@@ -1,3 +1,6 @@
+const VENDOR = require("./vendor");
+const msrpLookup = require("./msrpLookup");
+
 const SET_BB = "Set Booster Box";
 const SET_BD = "Set Booster Display";
 const DRAFT_BB = "Draft Booster Box";
@@ -11,194 +14,6 @@ const LOW_PRICE_TYPE = "low";
 const MKT_PRICE_TYPE = "market";
 const priceTypes = [AVG_PRICE_TYPE, LOW_PRICE_TYPE, MKT_PRICE_TYPE];
 
-const VENDOR = {
-  SMOKE_AND_MIRRORS: "SMOKE_AND_MIRRORS",
-  SUPER_SPORTS_CARDS: "SUPER_SPORTS_CARDS",
-  STAR_CITY_GAMES: "STAR_CITY_GAMES",
-  CARD_SHOP_LIVE: "CARD_SHOP_LIVE",
-  COLLECTOR_STORE: "COLLECTOR_STORE",
-  AMAZON: "AMAZON",
-  EBAY_PFOOTBALLPETE4DHX: "EBAY_PFOOTBALLPETE4DHX",
-  EBAY_THEWASTELANDGAMING: "EBAY_THEWASTELANDGAMING",
-  EBAY_CATACLYSMCOLLECTABLES: "EBAY_CATACLYSMCOLLECTABLES",
-  EBAY_CACARDSHARK: "EBAY_CACARDSHARK",
-  EBAY_CARDRUSHINC: "EBAY_CARDRUSHINC",
-  EBAY_FLIPSIDEGAMING: "EBAY_FLIPSIDEGAMING",
-};
-
-/**
- * booster packs 2.99 till "553-urza-s-destiny-booster-box"
- * booster packs 3.29 till "350-mirrodin-booster-box"
- * booster packs 3.69 till "50-coldsnap-booster-box"
- * booster packs 3.99 till "452-ravnica-allegiance-booster-box"
- * after "452-ravnica-allegiance-booster-box" market price
- */
-const msrpLookup = {
-  "3405-double-masters-2022-draft-booster-box": 250,
-  "3402-double-masters-2022-collector-booster-display": 230,
-  "3171-commander-legends-battle-for-baldur-s-gate-collector-booster-box": 240,
-  "3169-commander-legends-battle-for-baldur-s-gate-set-booster-box": 110,
-  "3174-commander-legends-battle-for-baldur-s-gate-draft-booster-box": 90,
-  "3203-streets-of-new-capenna-collector-booster-display": 180,
-  "3196-streets-of-new-capenna-set-booster-display": 100,
-  "3193-streets-of-new-capenna-draft-booster-box": 90,
-  "2885-kamigawa-neon-dynasty-collector-booster-display": 180,
-  "2883-kamigawa-neon-dynasty-set-booster-display": 120,
-  "2880-kamigawa-neon-dynasty-draft-booster-box": 90,
-  "2877-innistrad-double-feature-draft-booster-box": 175,
-  "2017-innistrad-crimson-vow-collector-booster-display": 180,
-  "2023-innistrad-crimson-vow-set-booster-display": 120,
-  "2020-innistrad-crimson-vow-draft-booster-box": 90,
-  "1952-innistrad-midnight-hunt-collector-booster-display": 180,
-  "1955-innistrad-midnight-hunt-set-booster-display": 120,
-  "1949-innistrad-midnight-hunt-draft-booster-box": 90,
-  "965-adventures-in-the-forgotten-realms-collector-booster-display": 180,
-  "958-adventures-in-the-forgotten-realms-draft-booster-box": 90,
-  "963-adventures-in-the-forgotten-realms-set-booster-display": 90,
-  "352-modern-horizons-2-collector-booster-display": 419,
-  "422-modern-horizons-2-set-booster-display": 275,
-  "437-modern-horizons-2-draft-booster-box": 220,
-  "560-strixhaven-school-of-mages-collector-booster-display": 180,
-  "496-strixhaven-school-of-mages-set-booster-display": 105,
-  "661-strixhaven-school-of-mages-draft-booster-box": 95,
-  "535-time-spiral-remastered-draft-booster-box": 290,
-  "347-kaldheim-collector-booster-display": 180,
-  "406-kaldheim-set-booster-display": 120,
-  "258-kaldheim-draft-booster-box": 100,
-  "73-commander-legends-draft-booster-box": 125,
-  "678-zendikar-rising-collector-booster-display": 180,
-  "707-zendikar-rising-set-booster-display": 120,
-  "599-zendikar-rising-draft-booster-box": 100,
-  "107-double-masters-booster-box": 330,
-  "253-jumpstart-booster-box": 100,
-  "196-core-set-2021-collector-booster-display": 180,
-  "80-core-set-2021-booster-box": 100,
-  "239-ikoria-lair-of-behemoths-booster-box": 100,
-  "521-theros-beyond-death-booster-box": 100,
-  "512-throne-of-eldraine-booster-box": 100,
-  "92-core-set-2020-booster-box": 100,
-  "368-modern-horizons-booster-box": 225,
-  "606-war-of-the-spark-booster-box": 100,
-  "452-ravnica-allegiance-booster-box": 100,
-  "533-ultimate-masters-booster-box": 305,
-  "236-guilds-of-ravnica-booster-box": 100,
-  "51-core-set-2019-booster-box": 100,
-  "61-battlebond-booster-box": 100,
-  "102-dominaria-booster-box": 100,
-  "342-masters-25-booster-box": 215,
-  "457-rivals-of-ixalan-booster-box": 100,
-  "523-unstable-booster-box": 100,
-  "245-iconic-masters-booster-box": 240,
-  "278-ixalan-booster-box": 100,
-  "243-hour-of-devastation-booster-box": 100,
-  "43-amonkhet-booster-box": 100,
-  "355-modern-masters-2017-booster-box": 210,
-  "63-aether-revolt-booster-box": 100,
-  "269-kaladesh-booster-box": 100,
-  "4-conspiracy-take-the-crown-booster-box": 100,
-  "164-eldritch-moon-booster-box": 100,
-  "168-eternal-masters-booster-box": 250,
-  "460-shadows-over-innistrad-booster-box": 100,
-  "373-oath-of-the-gatewatch-booster-box": 100,
-  "36-battle-for-zendikar-booster-box": 100,
-  "330-magic-origins-booster-box": 100,
-  "346-modern-masters-2015-booster-box": 200,
-  "99-dragons-of-tarkir-booster-box": 100,
-  "180-fate-reforged-booster-box": 100,
-  "265-khans-of-tarkir-booster-box": 100,
-  "317-magic-2015-m15-booster-box": 100,
-  "2-conspiracy-booster-box": 100,
-  "248-journey-into-nyx-booster-box": 100,
-  "41-born-of-the-gods-booster-box": 100,
-  "508-theros-booster-box": 100,
-  "305-magic-2014-m14-booster-box": 100,
-  "94-dragon-s-maze-booster-box": 100,
-  "237-gatecrash-booster-box": 100,
-  "446-return-to-ravnica-booster-box": 100,
-  "304-magic-2013-m13-booster-box": 100,
-  "39-avacyn-restored-booster-box": 100,
-  "57-dark-ascension-booster-box": 100,
-  "254-innistrad-booster-box": 100,
-  "313-magic-2012-m12-booster-box": 100,
-  "372-new-phyrexia-booster-box": 100,
-  "341-mirrodin-besieged-booster-box": 100,
-  "466-scars-of-mirrodin-booster-box": 100,
-  "302-magic-2011-m11-booster-box": 100,
-  "351-modern-masters-booster-box": 205,
-  "449-rise-of-the-eldrazi-booster-box": 100,
-  "576-worldwake-booster-box": 100,
-  "580-zendikar-booster-box": 100,
-  "291-magic-2010-m10-booster-box": 100,
-  "44-alara-reborn-booster-box": 100,
-  "21-conflux-booster-box": 100,
-  "462-shards-of-alara-booster-box": 100,
-  "179-eventide-booster-box": 100,
-  "456-shadowmoor-booster-box": 100,
-  "345-morningtide-booster-box": 100,
-  "290-lorwyn-booster-box": 100,
-  "54-10th-edition-booster-box": 100,
-  "232-future-sight-booster-box": 100,
-  "392-planar-chaos-booster-box": 100,
-  "513-time-spiral-booster-box": 100,
-  "50-coldsnap-booster-box": 100,
-  "70-dissension-booster-box": 100,
-  "231-guildpact-booster-box": 100,
-  "441-ravnica-booster-box": 100,
-  "49-9th-edition-booster-box": 100,
-  "454-saviors-of-kamigawa-booster-box": 100,
-  "29-betrayers-of-kamigawa-booster-box": 100,
-  "525-unhinged-booster-box": 100,
-  "55-champions-of-kamigawa-booster-box": 100,
-  "189-fifth-dawn-booster-box": 100,
-  "53-darksteel-booster-box": 100,
-  "350-mirrodin-booster-box": 100,
-  "37-8th-edition-booster-box": 100,
-  "450-scourge-booster-box": 100,
-  "277-legions-booster-box": 100,
-  "389-onslaught-booster-box": 100,
-  "247-judgment-booster-box": 100,
-  "493-torment-booster-box": 100,
-  "380-odyssey-booster-box": 100,
-  "38-apocalypse-booster-box": 100,
-  "23-7th-edition-booster-box": 100,
-  "399-planeshift-booster-box": 100,
-  "256-invasion-booster-box": 100,
-  "430-prophecy-booster-box": 100,
-  "370-nemesis-booster-box": 100,
-  "328-mercadian-masques-booster-box": 100,
-  "553-urza-s-destiny-booster-box": 100,
-  "413-portal-three-kingdoms-booster-box": 100,
-  "22-classic-sixth-edition-booster-box": 100,
-  "559-urza-s-legacy-booster-box": 100,
-  "561-urza-s-saga-booster-box": 100,
-  "495-unglued-booster-box": 100,
-  "178-exodus-booster-box": 100,
-  "417-portal-second-age-booster-box": 100,
-  "510-stronghold-booster-box": 100,
-  "502-tempest-booster-box": 100,
-  "579-weatherlight-booster-box": 100,
-  "411-portal-booster-box": 100,
-  "193-fifth-edition-booster-box": 100,
-  "568-visions-booster-box": 100,
-  "348-mirage-booster-box": 100,
-  "14-alliances-booster-box": 100,
-  "227-homelands-booster-box": 100,
-  "67-chronicles-booster-box": 100,
-  "228-ice-age-booster-box": 100,
-  "192-fourth-edition-booster-box": 100,
-  "183-fallen-empires-booster-box": 100,
-  "503-the-dark-booster-box": 100,
-  "275-legends-booster-box": 100,
-  "467-revised-edition-booster-box": 100,
-  "19-antiquities-booster-box": 100,
-  "56-arabian-nights-booster-box": 100,
-  "518-unlimited-edition-booster-box": 100,
-  "64-beta-edition-booster-box": 100,
-  "30-alpha-edition-booster-box": 100,
-};
-
-("2020-innistrad-crimson-vow-draft-booster-box");
-
 const inventory = [
   {
     name: "958-adventures-in-the-forgotten-realms-draft-booster-box",
@@ -207,6 +22,7 @@ const inventory = [
     paid: 263.97,
     source: VENDOR.AMAZON,
   },
+
   {
     name: "1949-innistrad-midnight-hunt-draft-booster-box",
     quantity: 1,
@@ -228,6 +44,7 @@ const inventory = [
     paid: 258.16,
     source: VENDOR.EBAY_PFOOTBALLPETE4DHX,
   },
+
   {
     name: "2880-kamigawa-neon-dynasty-draft-booster-box",
     quantity: 1,
@@ -235,6 +52,7 @@ const inventory = [
     paid: 111.86,
     source: VENDOR.AMAZON,
   },
+
   {
     name: "2883-kamigawa-neon-dynasty-set-booster-display",
     quantity: 2,
@@ -242,6 +60,7 @@ const inventory = [
     paid: 212.64,
     source: VENDOR.EBAY_PFOOTBALLPETE4DHX,
   },
+
   {
     name: "2883-kamigawa-neon-dynasty-set-booster-display",
     quantity: 2,
@@ -256,6 +75,7 @@ const inventory = [
     paid: 238.87,
     source: VENDOR.EBAY_CARDRUSHINC,
   },
+
   {
     name: "437-modern-horizons-2-draft-booster-box",
     quantity: 1,
@@ -263,6 +83,7 @@ const inventory = [
     paid: 215.07,
     source: VENDOR.EBAY_CATACLYSMCOLLECTABLES,
   },
+
   {
     name: "512-throne-of-eldraine-booster-box",
     quantity: 3,
@@ -270,6 +91,7 @@ const inventory = [
     paid: 439.9,
     source: VENDOR.EBAY_THEWASTELANDGAMING,
   },
+
   {
     name: "3193-streets-of-new-capenna-draft-booster-box",
     quantity: 2,
@@ -291,6 +113,7 @@ const inventory = [
     paid: 206.13,
     source: VENDOR.EBAY_PFOOTBALLPETE4DHX,
   },
+
   {
     name: "606-war-of-the-spark-booster-box",
     quantity: 2,
@@ -298,6 +121,7 @@ const inventory = [
     paid: 358.46,
     source: VENDOR.EBAY_THEWASTELANDGAMING,
   },
+
   {
     name: "3169-commander-legends-battle-for-baldur-s-gate-set-booster-box",
     quantity: 3,
@@ -305,6 +129,7 @@ const inventory = [
     paid: 311.18,
     source: VENDOR.EBAY_FLIPSIDEGAMING,
   },
+
   {
     name: "707-zendikar-rising-set-booster-display",
     quantity: 2,
@@ -317,8 +142,9 @@ const inventory = [
     quantity: 2,
     date: "2022-06-09",
     paid: 0.0,
-    source: "Amazon free",
+    source: VENDOR.AMAZON_FREE,
   },
+
   {
     name: "3174-commander-legends-battle-for-baldur-s-gate-draft-booster-box",
     quantity: 3,
@@ -326,6 +152,7 @@ const inventory = [
     paid: 297.98,
     source: VENDOR.EBAY_PFOOTBALLPETE4DHX,
   },
+
   {
     name: "3174-commander-legends-battle-for-baldur-s-gate-draft-booster-box",
     quantity: 1,
@@ -340,6 +167,7 @@ const inventory = [
     paid: 162.91,
     source: VENDOR.COLLECTOR_STORE,
   },
+
   {
     name: "3193-streets-of-new-capenna-draft-booster-box",
     quantity: 2,
@@ -347,6 +175,7 @@ const inventory = [
     paid: 162.91,
     source: VENDOR.COLLECTOR_STORE,
   },
+
   {
     name: "3193-streets-of-new-capenna-draft-booster-box",
     quantity: 1,
@@ -354,6 +183,7 @@ const inventory = [
     paid: 89.21,
     source: VENDOR.CARD_SHOP_LIVE,
   },
+
   {
     name: "661-strixhaven-school-of-mages-draft-booster-box",
     quantity: 1,
@@ -361,6 +191,7 @@ const inventory = [
     paid: 92.21,
     source: VENDOR.CARD_SHOP_LIVE,
   },
+
   {
     name: "958-adventures-in-the-forgotten-realms-draft-booster-box",
     quantity: 1,
@@ -375,6 +206,7 @@ const inventory = [
     paid: 87.21,
     source: VENDOR.CARD_SHOP_LIVE,
   },
+
   {
     name: "3405-double-masters-2022-draft-booster-box",
     quantity: 2,
@@ -389,6 +221,7 @@ const inventory = [
     paid: 238.04,
     source: VENDOR.STAR_CITY_GAMES,
   },
+
   {
     name: "2020-innistrad-crimson-vow-draft-booster-box",
     quantity: 2,
@@ -410,6 +243,7 @@ const inventory = [
     paid: 203.45,
     source: VENDOR.STAR_CITY_GAMES,
   },
+
   {
     name: "3193-streets-of-new-capenna-draft-booster-box",
     quantity: 3,
@@ -417,6 +251,7 @@ const inventory = [
     paid: 218.45,
     source: VENDOR.STAR_CITY_GAMES,
   },
+
   {
     name: "73-commander-legends-draft-booster-box",
     quantity: 1,
@@ -438,6 +273,7 @@ const inventory = [
     paid: 97.55,
     source: VENDOR.STAR_CITY_GAMES,
   },
+
   {
     name: "2880-kamigawa-neon-dynasty-draft-booster-box",
     date: "2022-06-28",
@@ -445,6 +281,7 @@ const inventory = [
     paid: 102.55,
     source: VENDOR.STAR_CITY_GAMES,
   },
+
   {
     name: "661-strixhaven-school-of-mages-draft-booster-box",
     date: "2022-06-28",
@@ -459,6 +296,7 @@ const inventory = [
     paid: 87.55,
     source: VENDOR.STAR_CITY_GAMES,
   },
+
   {
     name: "521-theros-beyond-death-booster-box",
     quantity: 1,
@@ -473,6 +311,7 @@ const inventory = [
     paid: 99.92,
     source: VENDOR.SMOKE_AND_MIRRORS,
   },
+
   {
     name: "1949-innistrad-midnight-hunt-draft-booster-box",
     quantity: 1,
@@ -487,6 +326,7 @@ const inventory = [
     paid: 119.48,
     source: VENDOR.SMOKE_AND_MIRRORS,
   },
+
   {
     name: "437-modern-horizons-2-draft-booster-box",
     quantity: 1,
@@ -501,6 +341,86 @@ const inventory = [
     paid: 97.75,
     source: VENDOR.SMOKE_AND_MIRRORS,
   },
+  {
+    name: "3169-commander-legends-battle-for-baldur-s-gate-set-booster-box",
+    quantity: 1,
+    date: "2022-07-09",
+    paid: 86.89,
+    source: VENDOR.SMOKE_AND_MIRRORS,
+  },
+
+  {
+    name: "521-theros-beyond-death-booster-box",
+    quantity: 1,
+    date: "2022-07-09",
+    paid: 119.48,
+    source: VENDOR.SMOKE_AND_MIRRORS,
+  },
+  {
+    name: "3169-commander-legends-battle-for-baldur-s-gate-set-booster-box",
+    quantity: 1,
+    date: "2022-07-09",
+    paid: 119.0,
+    source: VENDOR.SUPER_SPORTS_CARDS,
+  },
+
+  {
+    name: "958-adventures-in-the-forgotten-realms-draft-booster-box",
+    quantity: 1,
+    date: "2022-07-14",
+    paid: 117.28,
+    source: VENDOR.TIME_WARP_COMICS_AND_GAMES,
+  },
+  {
+    name: "3169-commander-legends-battle-for-baldur-s-gate-set-booster-box",
+    quantity: 1,
+    date: "2022-07-14",
+    paid: 106.61,
+    source: VENDOR.TIME_WARP_COMICS_AND_GAMES,
+  },
+
+  {
+    name: "1949-innistrad-midnight-hunt-draft-booster-box",
+    quantity: 4,
+    date: "2022-07-19",
+    paid: 277.24,
+    source: VENDOR.STAR_CITY_GAMES,
+  },
+  {
+    name: "2880-kamigawa-neon-dynasty-draft-booster-box",
+    quantity: 2,
+    date: "2022-07-19",
+    paid: 195.62,
+    source: VENDOR.STAR_CITY_GAMES,
+  },
+  {
+    name: "2880-kamigawa-neon-dynasty-draft-booster-box",
+    quantity: 6,
+    date: "2022-07-24",
+    paid: 520.0,
+    source: VENDOR.FORTUNA_GAMES,
+  },
+  {
+    name: "2880-kamigawa-neon-dynasty-draft-booster-box",
+    quantity: 1,
+    date: "2022-07-25",
+    paid: 86.67,
+    source: VENDOR.FORTUNA_GAMES,
+  },
+  {
+    name: "606-war-of-the-spark-booster-box",
+    quantity: 4,
+    date: "2022-07-25",
+    paid: 582.67,
+    source: VENDOR.FORTUNA_GAMES,
+  },
+  {
+    name: "3169-commander-legends-battle-for-baldur-s-gate-set-booster-box",
+    quantity: 1,
+    date: "2022-07-25",
+    paid: 76.67,
+    source: VENDOR.FORTUNA_GAMES,
+  },
 ];
 
-module.exports = { boxTypes, priceTypes, msrpLookup, inventory };
+module.exports = { boxTypes, priceTypes, msrpLookup, inventory, VENDOR };

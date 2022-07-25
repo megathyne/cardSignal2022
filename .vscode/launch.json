@@ -1,8 +1,18 @@
 {
     "configurations": [
+
     {
         "name": "Debug Parse Data",
         "program": "${workspaceFolder}/app/src/parseData.js",
+        "request": "launch",
+        "skipFiles": [
+            "<node_internals>/**"
+        ],
+        "type": "node"
+    },
+    {
+        "name": "Debug Reports Data",
+        "program": "${workspaceFolder}/app/src/reports/setAnalytics.js",
         "request": "launch",
         "skipFiles": [
             "<node_internals>/**"
