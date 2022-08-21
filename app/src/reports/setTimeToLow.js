@@ -40,7 +40,7 @@ const main = async () => {
       "   Set Name"
   );
   output
-    .sort((a, b) => (a[0] > b[0] ? -1 : 1))
+    .sort((a, b) => (a[2] > b[2] ? -1 : 1))
     .forEach((item) => {
       console.log(
         item[0].padEnd(18) +

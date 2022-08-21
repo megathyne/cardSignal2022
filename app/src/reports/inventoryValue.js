@@ -44,7 +44,13 @@ const main = async () => {
   for (const set of inventoryAnalyticArray) {
     const { cost, value, gain } = set;
 
-    console.log(cost.toFixed(2).padStart(15) + value.toFixed(2).padStart(15) + gain.toFixed(2).padStart(15) + "      " + set.name);
+    console.log(
+      cost.toFixed(2).padStart(15) +
+        value.toFixed(2).padStart(15) +
+        gain.toFixed(2).padStart(15) +
+        "      " +
+        set.name.split("-").splice(1).join(" ")
+    );
   }
   console.log(" ");
   console.log("Total Cost".padStart(15) + "Total Value".padStart(15) + "Total Gain".padStart(15) + "Total Quantity".padStart(15));

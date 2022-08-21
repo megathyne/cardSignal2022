@@ -1,5 +1,6 @@
 const VENDOR = require("./vendor");
 const msrpLookup = require("./msrpLookup");
+const TODAY = require("./today");
 
 const SET_BB = "Set Booster Box";
 const SET_BD = "Set Booster Display";
@@ -22,7 +23,6 @@ const inventory = [
     paid: 263.97,
     source: VENDOR.AMAZON,
   },
-
   {
     name: "1949-innistrad-midnight-hunt-draft-booster-box",
     quantity: 1,
@@ -44,7 +44,6 @@ const inventory = [
     paid: 258.16,
     source: VENDOR.EBAY_PFOOTBALLPETE4DHX,
   },
-
   {
     name: "2880-kamigawa-neon-dynasty-draft-booster-box",
     quantity: 1,
@@ -52,7 +51,6 @@ const inventory = [
     paid: 111.86,
     source: VENDOR.AMAZON,
   },
-
   {
     name: "2883-kamigawa-neon-dynasty-set-booster-display",
     quantity: 2,
@@ -60,12 +58,11 @@ const inventory = [
     paid: 212.64,
     source: VENDOR.EBAY_PFOOTBALLPETE4DHX,
   },
-
   {
     name: "2883-kamigawa-neon-dynasty-set-booster-display",
-    quantity: 2,
+    quantity: 1,
     date: "2022-06-03",
-    paid: 260.0,
+    paid: 130.0, // WAS 2 BUT USED FOR LEAGUE
     source: VENDOR.SUPER_SPORTS_CARDS,
   },
   {
@@ -75,7 +72,6 @@ const inventory = [
     paid: 238.87,
     source: VENDOR.EBAY_CARDRUSHINC,
   },
-
   {
     name: "437-modern-horizons-2-draft-booster-box",
     quantity: 1,
@@ -83,7 +79,6 @@ const inventory = [
     paid: 215.07,
     source: VENDOR.EBAY_CATACLYSMCOLLECTABLES,
   },
-
   {
     name: "512-throne-of-eldraine-booster-box",
     quantity: 3,
@@ -91,7 +86,6 @@ const inventory = [
     paid: 439.9,
     source: VENDOR.EBAY_THEWASTELANDGAMING,
   },
-
   {
     name: "3193-streets-of-new-capenna-draft-booster-box",
     quantity: 2,
@@ -121,7 +115,6 @@ const inventory = [
     paid: 358.46,
     source: VENDOR.EBAY_THEWASTELANDGAMING,
   },
-
   {
     name: "3169-commander-legends-battle-for-baldur-s-gate-set-booster-box",
     quantity: 3,
@@ -129,7 +122,6 @@ const inventory = [
     paid: 311.18,
     source: VENDOR.EBAY_FLIPSIDEGAMING,
   },
-
   {
     name: "707-zendikar-rising-set-booster-display",
     quantity: 2,
@@ -144,7 +136,6 @@ const inventory = [
     paid: 0.0,
     source: VENDOR.AMAZON_FREE,
   },
-
   {
     name: "3174-commander-legends-battle-for-baldur-s-gate-draft-booster-box",
     quantity: 3,
@@ -152,14 +143,13 @@ const inventory = [
     paid: 297.98,
     source: VENDOR.EBAY_PFOOTBALLPETE4DHX,
   },
-
-  {
-    name: "3174-commander-legends-battle-for-baldur-s-gate-draft-booster-box",
-    quantity: 1,
-    date: "2022-06-18",
-    paid: 130.0,
-    source: VENDOR.SUPER_SPORTS_CARDS,
-  },
+  // {
+  //   name: "3174-commander-legends-battle-for-baldur-s-gate-draft-booster-box",
+  //   quantity: 1,
+  //   date: "2022-06-18",
+  //   paid: 130.0,
+  //   source: VENDOR.SUPER_SPORTS_CARDS,
+  // }, Used for the draft league with the gang 2022-08-07
   {
     name: "3174-commander-legends-battle-for-baldur-s-gate-draft-booster-box",
     quantity: 2,
@@ -167,7 +157,6 @@ const inventory = [
     paid: 162.91,
     source: VENDOR.COLLECTOR_STORE,
   },
-
   {
     name: "3193-streets-of-new-capenna-draft-booster-box",
     quantity: 2,
@@ -175,7 +164,6 @@ const inventory = [
     paid: 162.91,
     source: VENDOR.COLLECTOR_STORE,
   },
-
   {
     name: "3193-streets-of-new-capenna-draft-booster-box",
     quantity: 1,
@@ -191,7 +179,6 @@ const inventory = [
     paid: 92.21,
     source: VENDOR.CARD_SHOP_LIVE,
   },
-
   {
     name: "958-adventures-in-the-forgotten-realms-draft-booster-box",
     quantity: 1,
@@ -206,7 +193,6 @@ const inventory = [
     paid: 87.21,
     source: VENDOR.CARD_SHOP_LIVE,
   },
-
   {
     name: "3405-double-masters-2022-draft-booster-box",
     quantity: 2,
@@ -221,7 +207,6 @@ const inventory = [
     paid: 238.04,
     source: VENDOR.STAR_CITY_GAMES,
   },
-
   {
     name: "2020-innistrad-crimson-vow-draft-booster-box",
     quantity: 2,
@@ -243,7 +228,6 @@ const inventory = [
     paid: 203.45,
     source: VENDOR.STAR_CITY_GAMES,
   },
-
   {
     name: "3193-streets-of-new-capenna-draft-booster-box",
     quantity: 3,
@@ -251,7 +235,6 @@ const inventory = [
     paid: 218.45,
     source: VENDOR.STAR_CITY_GAMES,
   },
-
   {
     name: "73-commander-legends-draft-booster-box",
     quantity: 1,
@@ -273,7 +256,6 @@ const inventory = [
     paid: 97.55,
     source: VENDOR.STAR_CITY_GAMES,
   },
-
   {
     name: "2880-kamigawa-neon-dynasty-draft-booster-box",
     date: "2022-06-28",
@@ -281,7 +263,6 @@ const inventory = [
     paid: 102.55,
     source: VENDOR.STAR_CITY_GAMES,
   },
-
   {
     name: "661-strixhaven-school-of-mages-draft-booster-box",
     date: "2022-06-28",
@@ -296,7 +277,6 @@ const inventory = [
     paid: 87.55,
     source: VENDOR.STAR_CITY_GAMES,
   },
-
   {
     name: "521-theros-beyond-death-booster-box",
     quantity: 1,
@@ -311,7 +291,6 @@ const inventory = [
     paid: 99.92,
     source: VENDOR.SMOKE_AND_MIRRORS,
   },
-
   {
     name: "1949-innistrad-midnight-hunt-draft-booster-box",
     quantity: 1,
@@ -326,7 +305,6 @@ const inventory = [
     paid: 119.48,
     source: VENDOR.SMOKE_AND_MIRRORS,
   },
-
   {
     name: "437-modern-horizons-2-draft-booster-box",
     quantity: 1,
@@ -348,7 +326,6 @@ const inventory = [
     paid: 86.89,
     source: VENDOR.SMOKE_AND_MIRRORS,
   },
-
   {
     name: "521-theros-beyond-death-booster-box",
     quantity: 1,
@@ -356,14 +333,13 @@ const inventory = [
     paid: 119.48,
     source: VENDOR.SMOKE_AND_MIRRORS,
   },
-  {
-    name: "3169-commander-legends-battle-for-baldur-s-gate-set-booster-box",
-    quantity: 1,
-    date: "2022-07-09",
-    paid: 119.0,
-    source: VENDOR.SUPER_SPORTS_CARDS,
-  },
-
+  // {
+  //   name: "3169-commander-legends-battle-for-baldur-s-gate-set-booster-box",
+  //   quantity: 1,
+  //   date: "2022-07-09",
+  //   paid: 119.0,
+  //   source: VENDOR.SUPER_SPORTS_CARDS,
+  // }, Opend the box as part of the test. $200 value of all items.
   {
     name: "958-adventures-in-the-forgotten-realms-draft-booster-box",
     quantity: 1,
@@ -378,7 +354,6 @@ const inventory = [
     paid: 106.61,
     source: VENDOR.TIME_WARP_COMICS_AND_GAMES,
   },
-
   {
     name: "1949-innistrad-midnight-hunt-draft-booster-box",
     quantity: 4,
@@ -421,6 +396,41 @@ const inventory = [
     paid: 76.67,
     source: VENDOR.FORTUNA_GAMES,
   },
+  {
+    name: "3169-commander-legends-battle-for-baldur-s-gate-set-booster-box",
+    quantity: 1,
+    date: "2022-07-31",
+    paid: 92.32,
+    source: VENDOR.SMOKE_AND_MIRRORS,
+  },
+  {
+    name: "599-zendikar-rising-draft-booster-box",
+    quantity: 1,
+    date: "2022-07-31",
+    paid: 97.75,
+    source: VENDOR.SMOKE_AND_MIRRORS,
+  },
+  {
+    name: "3169-commander-legends-battle-for-baldur-s-gate-set-booster-box",
+    quantity: 1,
+    date: "2022-08-05",
+    paid: 77.0,
+    source: VENDOR.FORTUNA_GAMES,
+  },
+  {
+    name: "3196-streets-of-new-capenna-set-booster-display",
+    quantity: 1,
+    date: "2022-08-05",
+    paid: 97, // Was double paid and double quanity but used one for league
+    source: VENDOR.FORTUNA_GAMES,
+  },
+  {
+    name: "2883-kamigawa-neon-dynasty-set-booster-display",
+    quantity: 2,
+    date: "2022-08-05",
+    paid: 234.0,
+    source: VENDOR.FORTUNA_GAMES,
+  },
 ];
 
-module.exports = { boxTypes, priceTypes, msrpLookup, inventory, VENDOR };
+module.exports = { boxTypes, priceTypes, msrpLookup, inventory, VENDOR, TODAY };

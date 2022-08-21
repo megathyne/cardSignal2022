@@ -30,6 +30,17 @@ class MtgStocks {
     }
   }
 
+  async getReserveList() {
+    console.log(`${this.getReserveList.name}()`);
+    try {
+      await setTimeout(this.WAIT, "result");
+      const response = await axios.get(`${this.baseUrl}/lists/1`);
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
+
   async getProductDetails(productId) {
     console.log(`${this.getProductDetails.name}(${productId})`);
     try {
@@ -89,9 +100,15 @@ async function main() {
   await fs.mkdir(`${masterDir}/ev`, { recursive: true });
   await fs.mkdir(`${masterDir}/products`, { recursive: true });
   await fs.mkdir(`${masterDir}/prices`, { recursive: true });
+  await fs.mkdir(`${masterDir}/reservelist`, { recursive: true });
+
+  let reserveList = await findFile(`${masterDir}/reservelist/reserve-list.json`);
+  if (reserveList.exists === false) {
+    reserveList.data = await mtgStocks.getReserveList();
+    await saveFile(reserveList.filename, reserveList.data);
+  }
 
   let masterProductList = await findFile(`${masterDir}/master-products.json`);
-
   if (masterProductList.exists === false) {
     masterProductList.data = await mtgStocks.getMasterProducts();
     await saveFile(masterProductList.filename, masterProductList.data);

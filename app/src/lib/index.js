@@ -9,6 +9,7 @@ class MtgData {
     this.filePaths.evDir = `${this.filePaths.masterDir}/ev`;
     this.filePaths.productsDir = `${this.filePaths.masterDir}/products`;
     this.filePaths.pricesDir = `${this.filePaths.masterDir}/prices`;
+    this.filePaths.reserveListDir = `${this.filePaths.masterDir}/reservelist`;
   }
 
   async findFile(filename) {
@@ -26,6 +27,10 @@ class MtgData {
 
   async getMasterProducts() {
     return await this.findFile(`${this.filePaths.masterDir}/master-products.json`);
+  }
+
+  async getReserveList() {
+    return await this.findFile(`${this.filePaths.reserveListDir}/reserve-list.json`);
   }
 
   async getMasterProductEv(slug) {
