@@ -11,7 +11,7 @@ const main = async () => {
   const files = await fs.readdir("../../data");
   files.sort((a, b) => (new Date(a).getTime() < new Date(b).getTime() ? 1 : -1));
 
-  const PRICE_LIMIT = 15;
+  const PRICE_LIMIT = 25;
   const EXCLUSION_LIST = [
     "Alpha Edition",
     "Beta Edition",

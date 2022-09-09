@@ -1,240 +1,321 @@
 "Card","Set","Quantity","Average","Market","Condition","Language","Foil","Signed","ProductType"
-"Zhalfirin Crusader","Visions",1,1.9,1.51,NM,en,No,No,print
-"Zephid","Urza's Saga",1,2.41,2.81,NM,en,No,No,print
-"Zelyon Sword","Fallen Empires",1,1.71,1.76,NM,en,No,No,print
-"Yare","Mirage",3,1.16,0.89,NM,en,No,No,print
-"Xanthic Statue","Weatherlight",1,1.83,1.83,NM,en,No,No,print
-"Wormwood Treefolk","The Dark",2,9.31,9.87,NM,en,No,No,print
-"Winter's Night","Alliances",1,2.69,2.5,NM,en,No,No,print
-"Winter's Chill","Ice Age",3,2.23,1.71,NM,en,No,No,print
-"Winter Sky","Homelands",1,2.1,2.01,NM,en,No,No,print
-"Wellspring","Mirage",1,2.25,2.03,NM,en,No,No,print
-"Well of Knowledge","Weatherlight",1,8.29,9.22,NM,en,No,No,print
-"Wave of Terror","Weatherlight",1,2.43,2.06,NM,en,No,No,print
-"Warping Wurm","Mirage",3,1.25,0.86,NM,en,No,No,print
-"Wandering Mage","Alliances",1,4.07,3.52,NM,en,No,No,print
-"Vodalian War Machine","Fallen Empires",3,1.03,0.95,NM,en,No,No,print
-"Vodalian Knights","Fallen Empires",3,1.24,1.21,NM,en,No,No,print
-"Viashivan Dragon","Visions",3,2,1.7,NM,en,No,No,print
-"Veldt","Ice Age",1,1.79,1.94,NM,en,No,No,print
-"Veldrane of Sengir","Homelands",3,1.15,1.11,NM,en,No,No,print
-"Urborg Stalker","Weatherlight",6,1.87,1.38,NM,en,No,No,print
-"Trailblazer","Ice Age",3,1.2,0.95,NM,en,No,No,print
-"Tourach's Gate","Fallen Empires",3,1.4,1.12,NM,en,No,No,print
-"Torrent of Lava","Mirage",3,1.33,1.01,NM,en,No,No,print
-"Tornado","Alliances",1,2.3,1.95,NM,en,No,No,print
-"Tolarian Serpent","Weatherlight",1,2.59,1.88,NM,en,No,No,print
-"Timmerian Fiends","Homelands",3,1.41,1.14,NM,en,No,No,print
-"Timberline Ridge","Ice Age",1,1.91,1.61,NM,en,No,No,print
-"Tidal Control","Alliances",1,2.26,2.01,NM,en,No,No,print
-"Three Wishes","Visions",1,3.94,3.56,NM,en,No,No,print
-"Thelonite Monk","Fallen Empires",1,1.57,1.44,NM,en,No,No,print
-"Thelon's Curse","Fallen Empires",3,1.59,1.59,NM,en,No,No,print
-"Telim'Tor's Edict","Mirage",1,3.06,2.31,NM,en,No,No,print
-"Telim'Tor","Mirage",1,1.79,1.56,NM,en,No,No,print
-"Teferi's Imp","Mirage",1,1.94,1.75,NM,en,No,No,print
-"Tainted Specter","Mirage",3,1.54,1.34,NM,en,No,No,print
-"Sworn Defender","Alliances",3,1.5,1.32,NM,en,No,No,print
-"Sustaining Spirit","Alliances",1,2.7,2.31,NM,en,No,No,print
-"Suleiman's Legacy","Visions",1,3.33,3.09,NM,en,No,No,print
-"Subterranean Spirit","Mirage",3,1.57,1.01,NM,en,No,No,print
-"Storm Spirit","Ice Age",3,1.36,1.41,NM,en,No,No,print
-"Spoils of War","Ice Age",1,1.65,1.48,NM,en,No,No,print
-"Splintering Wind","Alliances",3,1.1,0.99,NM,en,No,No,print
-"Spirit of the Night","Mirage",1,8.45,8.45,NM,en,No,No,print
-"Spirit Shield","Fallen Empires",3,1.38,1.38,NM,en,No,No,print
-"Spectral Guardian","Mirage",1,3.33,3.03,NM,en,No,No,print
-"Soul Echo","Mirage",1,3.92,3.5,NM,en,No,No,print
-"Soraya the Falconer","Homelands",1,2.57,2.4,NM,en,No,No,print
-"Soldevi Golem","Ice Age",1,2,1.89,NM,en,No,No,print
-"Soldevi Digger","Alliances",1,3.72,3.26,NM,en,No,No,print
-"Snowblind","Ice Age",3,1.51,1.53,NM,en,No,No,print
-"Skeleton Ship","Ice Age",1,4.99,4.95,NM,en,No,No,print
-"Silver Wyvern","Stronghold",1,2.24,2.27,NM,en,No,No,print
-"Sidar Jabari","Mirage",3,1.7,1.3,NM,en,No,No,print
-"Shimmer","Mirage",1,4.21,3.8,NM,en,No,No,print
-"Sheltered Valley","Alliances",1,2.51,2.39,NM,en,No,No,print
-"Shauku, Endbringer","Mirage",1,3.9,3.72,NM,en,No,No,print
-"Serra Aviary","Homelands",1,2.7,2.29,NM,en,No,No,print
-"Sawback Manticore","Mirage",3,1.4,1.35,NM,en,No,No,print
-"Rysorian Badger","Homelands",1,2.07,2.25,NM,en,No,No,print
-"Royal Decree","Alliances",1,3.52,3,NM,en,No,No,print
-"Rogue Skycaptain","Alliances",3,1.38,1.37,NM,en,No,No,print
-"Rock Basilisk","Mirage",4,1.47,1.35,NM,en,No,No,print
-"Roc of Kher Ridges","Revised Edition",1,3.46,2.85,NM,en,No,No,print
-"River Merfolk","Fallen Empires",1,1.67,1.41,NM,en,No,No,print
-"River Delta","Ice Age",1,2.4,2.43,NM,en,No,No,print
-"Ritual of Subdual","Ice Age",1,1.94,1.67,NM,en,No,No,print
-"Ring of Renewal","Fallen Empires",1,1.65,1.58,NM,en,No,No,print
-"Ring of Gix","Urza's Legacy",1,3.37,3.39,NM,en,No,No,print
-"Righteous War","Visions",1,4.05,3.41,NM,en,No,No,print
-"Reveka, Wizard Savant","Homelands",3,1.56,1.3,NM,en,No,No,print
-"Reality Twist","Ice Age",1,2.99,2.08,NM,en,No,No,print
-"Razor Pendulum","Mirage",1,1.78,1.75,NM,en,No,No,print
-"Rainbow Efreet","Visions",1,2.46,2.22,NM,en,No,No,print
-"Pygmy Hippo","Visions",1,4.06,3.64,NM,en,No,No,print
-"Purraj of Urborg","Mirage",3,2,1.59,NM,en,No,No,print
-"Prismatic Lace","Mirage",3,2.09,1.57,NM,en,No,No,print
-"Preferred Selection","Mirage",1,2,1.86,NM,en,No,No,print
-"Polar Kraken","Ice Age",1,2.81,3.12,NM,en,No,No,print
-"Pillar Tombs of Aku","Visions",3,2.03,1.39,NM,en,No,No,print
-"Phyrexian Tribute","Mirage",1,16.98,10.12,NM,en,No,No,print
-"Phyrexian Marauder","Visions",1,2.88,2.55,NM,en,No,No,print
-"Phantasmal Sphere","Alliances",1,1.71,1.55,NM,en,No,No,print
-"Paupers' Cage","Mirage",3,2.05,1.29,NM,en,No,No,print
-"Orim, Samite Healer","Tempest",1,3.24,2.58,NM,en,No,No,print
-"Opal Archangel","Urza's Saga",1,7.99,7.99,NM,en,No,No,print
-"Omen of Fire","Alliances",1,4.56,3.27,NM,en,No,No,print
-"Ogre Enforcer","Visions",3,1.12,1.09,NM,en,No,No,print
-"Null Chamber","Mirage",1,4.43,3.33,NM,en,No,No,print
-"Nature's Wrath","Alliances",1,2.99,2.58,NM,en,No,No,print
-"Narwhal","Homelands",3,2.29,1.49,NM,en,No,No,print
-"Mystic Might","Ice Age",4,1.24,1.19,NM,en,No,No,print
-"Mystic Decree","Homelands",3,2.26,1.9,NM,en,No,No,print
-"Mwonvuli Ooze","Weatherlight",4,1.5,1.12,NM,en,No,No,print
-"Musician","Ice Age",1,2.28,1.94,NM,en,No,No,print
-"Mudslide","Ice Age",1,3.35,2.11,NM,en,No,No,print
-"Mountain Titan","Ice Age",3,1.2,0.89,NM,en,No,No,print
-"Morinfen","Weatherlight",3,1.79,1.71,NM,en,No,No,print
-"Mist Dragon","Mirage",1,3.49,3.58,NM,en,No,No,print
-"Misfortune","Alliances",1,2.82,3.19,NM,en,No,No,print
-"Misers' Cage","Mirage",1,1.89,1.51,NM,en,No,No,print
-"Minion of Tevesh Szat","Ice Age",3,1.06,0.96,NM,en,No,No,print
-"Mindbender Spores","Mirage",3,1.79,1.29,NM,en,No,No,print
-"Mesmeric Trance","Ice Age",4,1.05,0.93,NM,en,No,No,print
-"Mercenaries","Ice Age",4,1.24,1.21,NM,en,No,No,print
-"Masticore","Urza's Destiny",1,11.22,14.9,NM,en,No,No,print
-"Marjhan","Homelands",4,1.59,1.24,NM,en,No,No,print
-"Maraxus of Keld","Weatherlight",1,2.99,2.64,NM,en,No,No,print
-"Mammoth Harness","Homelands",1,1.9,1.82,NM,en,No,No,print
-"Malignant Growth","Mirage",3,1.35,0.99,NM,en,No,No,print
-"Lurker","The Dark",1,9.87,10.35,NM,en,No,No,print
-"Lightning Dragon","Urza's Saga",1,6.17,8.69,NM,en,No,No,print
-"Lightning Cloud","Visions",3,1.47,0.93,NM,en,No,No,print
-"Lightning Blow","Ice Age",3,1.33,0.96,NM,en,No,No,print
-"Lichenthrope","Visions",3,1.66,1.38,NM,en,No,No,print
-"Leering Gargoyle","Mirage",4,1.25,0.95,NM,en,No,No,print
-"Lava Tubes","Ice Age",1,2.29,2.33,NM,en,No,No,print
-"Land Cap","Ice Age",1,2.22,2.22,NM,en,No,No,print
-"Kukemssa Pirates","Mirage",1,3.99,3.24,NM,en,No,No,print
-"Kudzu","Revised Edition",1,2.69,2.14,NM,en,No,No,print
-"Krovikan Horror","Alliances",1,3.79,2.89,NM,en,No,No,print
-"Koskun Falls","Homelands",1,9.99,9.65,NM,en,No,No,print
-"Kookus","Visions",4,1.3,1.25,NM,en,No,No,print
-"Kjeldoran Phalanx","Ice Age",1,1.35,1.36,NM,en,No,No,print
+"Zuberi, Golden Feather","Mirage",1,13.5,8.11,NM,en,No,No,print
+"Zhalfirin Crusader","Visions",1,1.95,1.53,NM,en,No,No,print
+"Zephid","Urza's Saga",1,2.5,2.58,NM,en,No,No,print
+"Zelyon Sword","Fallen Empires",1,1.76,1.8,NM,en,No,No,print
+"Yare","Mirage",3,1.16,0.85,NM,en,No,No,print
+"Xanthic Statue","Weatherlight",1,1.8,1.8,NM,en,No,No,print
+"Wormwood Treefolk","The Dark",2,9,9.94,NM,en,No,No,print
+"Winter's Night","Alliances",1,2.58,2.39,NM,en,No,No,print
+"Winter's Chill","Ice Age",3,2.23,1.84,NM,en,No,No,print
+"Winter Sky","Homelands",1,2.1,1.85,NM,en,No,No,print
+"Willow Priestess","Homelands",1,7.15,7.84,NM,en,No,No,print
+"Wellspring","Mirage",1,2.18,1.94,NM,en,No,No,print
+"Well of Knowledge","Weatherlight",1,8.38,9.22,NM,en,No,No,print
+"Weatherseed Treefolk","Urza's Legacy",1,3.14,3.68,NM,en,No,No,print
+"Wave of Terror","Weatherlight",1,2.15,2.05,NM,en,No,No,print
+"Warping Wurm","Mirage",3,1.26,0.89,NM,en,No,No,print
+"Wandering Mage","Alliances",1,4.44,3.22,NM,en,No,No,print
+"Wall of Kelp","Homelands",1,6.85,4.78,NM,en,No,No,print
+"Volrath's Shapeshifter","Stronghold",1,7,6.39,NM,en,No,No,print
+"Vodalian War Machine","Fallen Empires",3,1.04,0.98,NM,en,No,No,print
+"Vodalian Knights","Fallen Empires",3,1.28,1.17,NM,en,No,No,print
+"Viashivan Dragon","Visions",3,2.2,1.9,NM,en,No,No,print
+"Veteran Bodyguard","Revised Edition",1,3.99,4.07,NM,en,No,No,print
+"Ventifact Bottle","Mirage",1,3.41,4.88,NM,en,No,No,print
+"Veldt","Ice Age",1,1.81,1.66,NM,en,No,No,print
+"Veldrane of Sengir","Homelands",3,1.29,1.11,NM,en,No,No,print
+"Varchild's War-Riders","Alliances",1,5.99,5.85,NM,en,No,No,print
+"Urborg Stalker","Weatherlight",6,1.71,1.33,NM,en,No,No,print
+"Urborg Justice","Weatherlight",1,11.56,11.09,NM,en,No,No,print
+"Unfulfilled Desires","Mirage",1,11.95,11.41,NM,en,No,No,print
+"Triangle of War","Visions",1,6.39,6.35,NM,en,No,No,print
+"Trailblazer","Ice Age",3,1.25,1,NM,en,No,No,print
+"Tourach's Gate","Fallen Empires",3,1.39,1.11,NM,en,No,No,print
+"Torrent of Lava","Mirage",3,1.28,0.96,NM,en,No,No,print
+"Tornado","Alliances",1,2.09,1.93,NM,en,No,No,print
+"Tolarian Serpent","Weatherlight",1,2.33,1.91,NM,en,No,No,print
+"Tolarian Entrancer","Weatherlight",1,5.3,5.57,NM,en,No,No,print
+"Timmerian Fiends","Homelands",3,1.45,1.21,NM,en,No,No,print
+"Timberline Ridge","Ice Age",1,1.87,1.42,NM,en,No,No,print
+"Tidal Control","Alliances",1,2.01,2,NM,en,No,No,print
+"Thrull Champion","Fallen Empires",1,6.46,7.45,NM,en,No,No,print
+"Three Wishes","Visions",1,3.78,3.62,NM,en,No,No,print
+"Thran Tome","Weatherlight",1,5.52,5.52,NM,en,No,No,print
+"Thelonite Monk","Fallen Empires",1,1.45,1.44,NM,en,No,No,print
+"Thelon's Curse","Fallen Empires",3,1.79,1.79,NM,en,No,No,print
+"Temporal Aperture","Urza's Saga",1,6.64,6.26,NM,en,No,No,print
+"Telim'Tor's Edict","Mirage",1,2.76,2.26,NM,en,No,No,print
+"Telim'Tor","Mirage",1,1.67,1.56,NM,en,No,No,print
+"Teferi's Realm","Visions",1,4.51,3.98,NM,en,No,No,print
+"Teferi's Isle","Mirage",1,7.21,7.2,NM,en,No,No,print
+"Teferi's Imp","Mirage",1,1.92,1.75,NM,en,No,No,print
+"Teeka's Dragon","Mirage",1,6.89,7.45,NM,en,No,No,print
+"Taniwha","Mirage",1,5.79,4.95,NM,en,No,No,print
+"Tainted Specter","Mirage",3,1.54,1.36,NM,en,No,No,print
+"Sworn Defender","Alliances",3,1.41,1.31,NM,en,No,No,print
+"Sustaining Spirit","Alliances",1,2.5,2.29,NM,en,No,No,print
+"Suleiman's Legacy","Visions",1,3.34,3.05,NM,en,No,No,print
+"Subterranean Spirit","Mirage",3,1.53,1.04,NM,en,No,No,print
+"Storm Spirit","Ice Age",3,1.36,1.36,NM,en,No,No,print
+"Spoils of War","Ice Age",1,1.55,1.4,NM,en,No,No,print
+"Spoils of Evil","Ice Age",1,6.99,6.42,NM,en,No,No,print
+"Splintering Wind","Alliances",3,1.01,0.91,NM,en,No,No,print
+"Spirit of the Night","Mirage",1,8.45,8.29,NM,en,No,No,print
+"Spirit Shield","Fallen Empires",3,1.39,1.29,NM,en,No,No,print
+"Spectral Guardian","Mirage",1,3.31,3.15,NM,en,No,No,print
+"Soul Echo","Mirage",1,3.5,3.54,NM,en,No,No,print
+"Soraya the Falconer","Homelands",1,2.71,2.33,NM,en,No,No,print
+"Soldevi Golem","Ice Age",1,1.89,1.84,NM,en,No,No,print
+"Soldevi Digger","Alliances",1,3.75,3.26,NM,en,No,No,print
+"Snowblind","Ice Age",3,3.26,1.68,NM,en,No,No,print
+"Skeleton Ship","Ice Age",1,4.99,4.83,NM,en,No,No,print
+"Silver Wyvern","Stronghold",1,2.16,2.3,NM,en,No,No,print
+"Sidar Jabari","Mirage",3,1.62,1.3,NM,en,No,No,print
+"Shimmer","Mirage",1,4.09,3.77,NM,en,No,No,print
+"Sheltered Valley","Alliances",1,2.4,2.4,NM,en,No,No,print
+"Shauku, Endbringer","Mirage",1,3.86,3.78,NM,en,No,No,print
+"Serra Aviary","Homelands",1,2.66,2.25,NM,en,No,No,print
+"Sedge Troll","Revised Edition",1,4.87,4.37,NM,en,No,No,print
+"Second Chance","Urza's Legacy",1,12.18,9.47,NM,en,No,No,print
+"Scarwood Bandits","The Dark",1,10,10.65,NM,en,No,No,print
+"Sawback Manticore","Mirage",3,1.41,1.35,NM,en,No,No,print
+"Sarcomancy","Tempest",1,5.95,5.82,NM,en,No,No,print
+"Sands of Time","Visions",1,4.9,4.55,NM,en,No,No,print
+"Rysorian Badger","Homelands",1,2.14,2.14,NM,en,No,No,print
+"Royal Decree","Alliances",1,3.49,3.23,NM,en,No,No,print
+"Rogue Skycaptain","Alliances",3,1.33,1.33,NM,en,No,No,print
+"Rock Hydra","Revised Edition",1,5.34,4.95,NM,en,No,No,print
+"Rock Basilisk","Mirage",4,1.47,1.37,NM,en,No,No,print
+"Roc of Kher Ridges","Revised Edition",1,3.5,2.84,NM,en,No,No,print
+"River Merfolk","Fallen Empires",1,1.66,1.26,NM,en,No,No,print
+"River Delta","Ice Age",1,2.32,2.33,NM,en,No,No,print
+"Ritual of Subdual","Ice Age",1,2,1.64,NM,en,No,No,print
+"Ring of Renewal","Fallen Empires",1,1.51,1.39,NM,en,No,No,print
+"Ring of Gix","Urza's Legacy",1,3,3.35,NM,en,No,No,print
+"Righteous War","Visions",1,4.03,3.54,NM,en,No,No,print
+"Reveka, Wizard Savant","Homelands",3,1.55,1.29,NM,en,No,No,print
+"Reparations","Mirage",1,5.99,5.41,NM,en,No,No,print
+"Reflect Damage","Mirage",1,4.25,5.56,NM,en,No,No,print
+"Recycle","Tempest",1,7.61,7.76,NM,en,No,No,print
+"Reality Twist","Ice Age",1,2.83,2.14,NM,en,No,No,print
+"Razor Pendulum","Mirage",1,1.79,1.76,NM,en,No,No,print
+"Rashida Scalebane","Mirage",1,5.99,6.29,NM,en,No,No,print
+"Rainbow Vale","Fallen Empires",1,9.94,11.18,NM,en,No,No,print
+"Rainbow Efreet","Visions",1,2.25,2.21,NM,en,No,No,print
+"Quirion Druid","Visions",1,4.02,3.92,NM,en,No,No,print
+"Pygmy Hippo","Visions",1,4.13,3.94,NM,en,No,No,print
+"Purraj of Urborg","Mirage",3,2.03,1.71,NM,en,No,No,print
+"Purgatory","Mirage",1,5.39,4.81,NM,en,No,No,print
+"Psychic Vortex","Weatherlight",1,6.82,6.85,NM,en,No,No,print
+"Prismatic Lace","Mirage",3,2.11,1.51,NM,en,No,No,print
+"Preferred Selection","Mirage",1,2,1.87,NM,en,No,No,print
+"Powder Keg","Urza's Destiny",1,11,10.62,NM,en,No,No,print
+"Political Trickery","Mirage",1,6.02,4.64,NM,en,No,No,print
+"Polar Kraken","Ice Age",1,2.79,3.27,NM,en,No,No,print
+"Pillar Tombs of Aku","Visions",3,2,1.38,NM,en,No,No,print
+"Phyrexian Tribute","Mirage",1,11.44,10.48,NM,en,No,No,print
+"Phyrexian Purge","Mirage",1,5.93,5.57,NM,en,No,No,print
+"Phyrexian Portal","Alliances",1,3.72,3.37,NM,en,No,No,print
+"Phyrexian Marauder","Visions",1,2.78,2.48,NM,en,No,No,print
+"Phantasmal Sphere","Alliances",1,1.55,1.38,NM,en,No,No,print
+"Paupers' Cage","Mirage",3,1.88,1.29,NM,en,No,No,print
+"Paradigm Shift","Weatherlight",1,12.23,9.96,NM,en,No,No,print
+"Orim, Samite Healer","Tempest",1,3.56,3.03,NM,en,No,No,print
+"Opal Archangel","Urza's Saga",1,7.99,8.04,NM,en,No,No,print
+"Omen of Fire","Alliances",1,4.31,3.33,NM,en,No,No,print
+"Ogre Enforcer","Visions",3,1.1,1.08,NM,en,No,No,print
+"Oath of Ghouls","Exodus",1,6.27,5.16,NM,en,No,No,print
+"Null Chamber","Mirage",1,4.17,3.58,NM,en,No,No,print
+"Niall Silvain","The Dark",1,9.48,11.06,NM,en,No,No,print
+"Nature's Wrath","Alliances",1,2.87,2.58,NM,en,No,No,print
+"Natural Balance","Mirage",1,4.11,3.81,NM,en,No,No,print
+"Narwhal","Homelands",3,2.13,1.69,NM,en,No,No,print
+"Mystic Might","Ice Age",4,1.23,1.19,NM,en,No,No,print
+"Mystic Decree","Homelands",3,2.21,1.92,NM,en,No,No,print
+"Mwonvuli Ooze","Weatherlight",4,1.49,1.09,NM,en,No,No,print
+"Musician","Ice Age",1,2.25,1.93,NM,en,No,No,print
+"Multani, Maro-Sorcerer","Urza's Legacy",1,8.82,9.99,NM,en,No,No,print
+"Mudslide","Ice Age",1,3,2.09,NM,en,No,No,print
+"Mountain Titan","Ice Age",3,1.23,0.92,NM,en,No,No,print
+"Morinfen","Weatherlight",3,1.7,1.71,NM,en,No,No,print
+"Mist Dragon","Mirage",1,3.46,3.39,NM,en,No,No,print
+"Misfortune","Alliances",1,2.76,2.98,NM,en,No,No,print
+"Misers' Cage","Mirage",1,1.85,1.35,NM,en,No,No,print
+"Minion of Tevesh Szat","Ice Age",3,1.25,0.89,NM,en,No,No,print
+"Mindbender Spores","Mirage",3,1.78,1.3,NM,en,No,No,print
+"Mesmeric Trance","Ice Age",4,1.06,0.89,NM,en,No,No,print
+"Mercenaries","Ice Age",4,1.24,1.1,NM,en,No,No,print
+"Meditate","Tempest",1,7.98,7.12,NM,en,No,No,print
+"Masticore","Urza's Destiny",1,10.75,14.48,NM,en,No,No,print
+"Marjhan","Homelands",4,1.49,1.14,NM,en,No,No,print
+"Maraxus of Keld","Weatherlight",1,2.99,2.67,NM,en,No,No,print
+"Mangara's Tome","Mirage",1,4.99,4.48,NM,en,No,No,print
+"Mammoth Harness","Homelands",1,1.87,1.8,NM,en,No,No,print
+"Malignant Growth","Mirage",3,1.25,0.98,NM,en,No,No,print
+"Lurker","The Dark",1,9.69,10.35,NM,en,No,No,print
+"Lure of Prey","Mirage",1,4.76,4.26,NM,en,No,No,print
+"Lord of Tresserhorn","Alliances",1,6.88,6.86,NM,en,No,No,print
+"Lodestone Bauble","Alliances",1,6.24,6.24,NM,en,No,No,print
+"Lightning Dragon","Urza's Saga",1,6,9.09,NM,en,No,No,print
+"Lightning Cloud","Visions",3,1.5,0.99,NM,en,No,No,print
+"Lightning Blow","Ice Age",3,1.33,0.94,NM,en,No,No,print
+"Liege of the Hollows","Weatherlight",1,7.57,5.89,NM,en,No,No,print
+"Lichenthrope","Visions",3,1.59,1.31,NM,en,No,No,print
+"Leering Gargoyle","Mirage",4,1.18,0.95,NM,en,No,No,print
+"Leeches","Homelands",1,5.65,5.47,NM,en,No,No,print
+"Lava Tubes","Ice Age",1,2.25,2.25,NM,en,No,No,print
+"Land Cap","Ice Age",1,2.22,2.18,NM,en,No,No,print
+"Kukemssa Pirates","Mirage",1,3.99,3.15,NM,en,No,No,print
+"Kudzu","Revised Edition",1,2.58,1.92,NM,en,No,No,print
+"Krovikan Horror","Alliances",1,3.5,2.94,NM,en,No,No,print
+"Koskun Falls","Homelands",1,10.19,10.07,NM,en,No,No,print
+"Kookus","Visions",4,1.29,1.12,NM,en,No,No,print
+"Kjeldoran Phalanx","Ice Age",1,1.58,1.34,NM,en,No,No,print
 "Kjeldoran Knight","Ice Age",3,1.55,1.21,NM,en,No,No,print
-"Keeper of Tresserhorn","Alliances",3,1.24,1.25,NM,en,No,No,print
-"Kaysa","Alliances",1,7.07,7.73,NM,en,No,No,print
-"Katabatic Winds","Visions",1,2.34,2.15,NM,en,No,No,print
-"Kaervek's Spite","Visions",1,2.68,2.64,NM,en,No,No,print
-"Jabari's Influence","Mirage",1,2.73,1.77,NM,en,No,No,print
-"Ivory Gargoyle","Alliances",3,1.52,1.56,NM,en,No,No,print
-"Inner Sanctum","Weatherlight",1,3,2.98,NM,en,No,No,print
+"Keeper of Tresserhorn","Alliances",3,1.24,1.22,NM,en,No,No,print
+"Kaysa","Alliances",1,7.19,8.25,NM,en,No,No,print
+"Katabatic Winds","Visions",1,2.24,2.04,NM,en,No,No,print
+"Kaervek's Spite","Visions",1,2.63,2.62,NM,en,No,No,print
+"Jungle Patrol","Mirage",1,5.81,6.11,NM,en,No,No,print
+"Jester's Mask","Ice Age",1,6.22,5.67,NM,en,No,No,print
+"Jabari's Influence","Mirage",1,2.38,1.82,NM,en,No,No,print
+"Ivory Gargoyle","Alliances",3,1.51,1.51,NM,en,No,No,print
+"Inner Sanctum","Weatherlight",1,2.98,2.98,NM,en,No,No,print
+"Infernal Tribute","Weatherlight",1,7,5.96,NM,en,No,No,print
 "Infernal Denizen","Ice Age",3,1.28,1.15,NM,en,No,No,print
-"Implements of Sacrifice","Fallen Empires",3,1.65,1.44,NM,en,No,No,print
-"Illusionary Presence","Ice Age",2,1.33,0.84,NM,en,No,No,print
-"Ice Cauldron","Ice Age",1,3.29,3.57,NM,en,No,No,print
-"Icatian Skirmishers","Fallen Empires",4,1.07,1.09,NM,en,No,No,print
-"Icatian Lieutenant","Fallen Empires",1,1,1.57,NM,en,No,No,print
-"Hot Springs","Ice Age",3,1.23,1.14,NM,en,No,No,print
-"Homarid Shaman","Fallen Empires",1,1.76,1.84,NM,en,No,No,print
-"Hivis of the Scale","Mirage",1,9.88,11.09,NM,en,No,No,print
-"Herald of Serra","Urza's Saga",1,6.29,9.09,NM,en,No,No,print
-"Heart of Yavimaya","Alliances",1,3.84,3.71,NM,en,No,No,print
-"Heart of Bogardan","Weatherlight",1,1.91,1.94,NM,en,No,No,print
-"Heart Wolf","Homelands",1,1.16,0.78,NM,en,No,No,print
-"Hazduhr the Abbot","Homelands",3,1.08,1.04,NM,en,No,No,print
-"Hand of Justice","Fallen Empires",1,3.24,3.67,NM,en,No,No,print
-"Halls of Mist","Ice Age",1,3.73,3.42,NM,en,No,No,print
-"Hakim, Loreweaver","Mirage",2,1.68,1.27,NM,en,No,No,print
-"Guiding Spirit","Visions",1,3,3.07,NM,en,No,No,print
-"Grim Feast","Mirage",1,8.29,7.93,NM,en,No,No,print
-"Griffin Canyon","Visions",1,13.49,9.75,NM,en,No,No,print
-"Gravebind","Ice Age",5,1.33,1.11,NM,en,No,No,print
-"Grandmother Sengir","Homelands",3,1.28,1.13,NM,en,No,No,print
-"Goblin Flotilla","Fallen Empires",3,1.47,1.37,NM,en,No,No,print
+"Implements of Sacrifice","Fallen Empires",3,1.66,1.31,NM,en,No,No,print
+"Illusions of Grandeur","Ice Age",1,10.44,11.43,NM,en,No,No,print
+"Illusionary Presence","Ice Age",2,1.32,0.85,NM,en,No,No,print
+"Ice Cauldron","Ice Age",1,3.47,3.57,NM,en,No,No,print
+"Icatian Skirmishers","Fallen Empires",4,1.42,1.28,NM,en,No,No,print
+"Icatian Lieutenant","Fallen Empires",1,1.4,1.52,NM,en,No,No,print
+"Hot Springs","Ice Age",3,1.22,1.1,NM,en,No,No,print
+"Homarid Shaman","Fallen Empires",1,1.74,1.85,NM,en,No,No,print
+"Hivis of the Scale","Mirage",1,9.17,11,NM,en,No,No,print
+"Herald of Serra","Urza's Saga",1,6.27,8.69,NM,en,No,No,print
+"Heat Stroke","Weatherlight",1,4.97,4.65,NM,en,No,No,print
+"Heart of Yavimaya","Alliances",1,3.82,3.53,NM,en,No,No,print
+"Heart of Bogardan","Weatherlight",1,1.89,1.97,NM,en,No,No,print
+"Heart Wolf","Homelands",1,1.22,0.85,NM,en,No,No,print
+"Hazduhr the Abbot","Homelands",3,1.23,1.02,NM,en,No,No,print
+"Harbinger of Night","Mirage",1,4.05,4.05,NM,en,No,No,print
+"Hand of Justice","Fallen Empires",1,3.19,3.35,NM,en,No,No,print
+"Halls of Mist","Ice Age",1,3.69,3.38,NM,en,No,No,print
+"Hakim, Loreweaver","Mirage",2,1.64,1.22,NM,en,No,No,print
+"Gustha's Scepter","Alliances",1,4.77,5.15,NM,en,No,No,print
+"Guiding Spirit","Visions",1,3.07,3.02,NM,en,No,No,print
+"Grim Feast","Mirage",1,7.99,7.67,NM,en,No,No,print
+"Griffin Canyon","Visions",1,15.17,14.49,NM,en,No,No,print
+"Gravebind","Ice Age",5,1.25,1.13,NM,en,No,No,print
+"Granite Gargoyle","Revised Edition",1,5.27,5.17,NM,en,No,No,print
+"Grandmother Sengir","Homelands",3,1.28,1.18,NM,en,No,No,print
+"Goblin Flotilla","Fallen Empires",3,1.4,1.36,NM,en,No,No,print
 "Glacial Crevasses","Ice Age",1,2.87,2.87,NM,en,No,No,print
-"General Jarkeld","Ice Age",3,1.29,1.05,NM,en,No,No,print
-"Gargantuan Gorilla","Alliances",3,1.49,1.48,NM,en,No,No,print
-"Gallowbraid","Weatherlight",3,1.66,1.36,NM,en,No,No,print
-"Fyndhorn Pollen","Ice Age",3,1.4,1.28,NM,en,No,No,print
-"Fungus Elemental","Weatherlight",1,2.3,2.82,NM,en,No,No,print
-"Fungal Bloom","Fallen Empires",1,3.47,3.17,NM,en,No,No,print
-"Formation","Ice Age",3,1.44,1.19,NM,en,No,No,print
-"Flow of Maggots","Ice Age",3,1.25,1.13,NM,en,No,No,print
-"Floodwater Dam","Alliances",1,1.95,1.85,NM,en,No,No,print
-"Flooded Shoreline","Visions",1,2.75,2.21,NM,en,No,No,print
-"Firestorm Hellkite","Visions",3,1.55,1.55,NM,en,No,No,print
-"Fatal Lore","Alliances",3,1.71,1.23,NM,en,No,No,print
-"Farmstead","Revised Edition",1,2.52,2.52,NM,en,No,No,print
-"Faerie Noble","Homelands",1,2.32,2.06,NM,en,No,No,print
-"Exalted Dragon","Exodus",1,2.32,1.96,NM,en,No,No,print
-"Escaped Shapeshifter","Tempest",1,3.03,2.92,NM,en,No,No,print
-"Ertai's Familiar","Weatherlight",1,1.93,1.93,NM,en,No,No,print
-"Equipoise","Visions",1,4.26,3.81,NM,en,No,No,print
-"Energy Vortex","Mirage",1,1.99,1.63,NM,en,No,No,print
-"Energy Storm","Ice Age",1,2.75,2.31,NM,en,No,No,print
-"Emberwilde Djinn","Mirage",3,1.24,1.01,NM,en,No,No,print
-"Emberwilde Caliph","Mirage",10,1.48,1.06,NM,en,No,No,print
-"Elvish Farmer","Fallen Empires",1,6,9,NM,en,No,No,print
-"Elven Lyre","Fallen Empires",3,1.25,1.22,NM,en,No,No,print
-"Elkin Lair","Visions",1,3.42,2.56,NM,en,No,No,print
+"General Jarkeld","Ice Age",3,1.42,1.3,NM,en,No,No,print
+"Gargantuan Gorilla","Alliances",3,1.48,1.46,NM,en,No,No,print
+"Gallowbraid","Weatherlight",3,1.54,1.38,NM,en,No,No,print
+"Fyndhorn Pollen","Ice Age",3,1.38,1.12,NM,en,No,No,print
+"Fungus Elemental","Weatherlight",1,2.35,2.89,NM,en,No,No,print
+"Fungal Bloom","Fallen Empires",1,3.83,3.28,NM,en,No,No,print
+"Forsaken Wastes","Mirage",1,6.08,5.53,NM,en,No,No,print
+"Formation","Ice Age",3,1.49,1.2,NM,en,No,No,print
+"Forbidden Ritual","Visions",1,3.93,5.49,NM,en,No,No,print
+"Flow of Maggots","Ice Age",3,1.24,1.09,NM,en,No,No,print
+"Floodwater Dam","Alliances",1,1.99,1.69,NM,en,No,No,print
+"Flooded Shoreline","Visions",1,2.67,2.21,NM,en,No,No,print
+"Firestorm Hellkite","Visions",3,1.56,1.58,NM,en,No,No,print
+"Fatal Lore","Alliances",3,1.51,1.23,NM,en,No,No,print
+"Farmstead","Revised Edition",1,2.46,2.27,NM,en,No,No,print
+"Faerie Noble","Homelands",1,3.89,3.25,NM,en,No,No,print
+"Eye of Singularity","Visions",1,5.12,4.51,NM,en,No,No,print
+"Exalted Dragon","Exodus",1,2.34,2,NM,en,No,No,print
+"Eternal Flame","The Dark",1,9.98,10.81,NM,en,No,No,print
+"Escaped Shapeshifter","Tempest",1,2.99,2.89,NM,en,No,No,print
+"Ertai's Familiar","Weatherlight",1,1.92,1.92,NM,en,No,No,print
+"Equipoise","Visions",1,4.26,3.9,NM,en,No,No,print
+"Energy Vortex","Mirage",1,1.86,1.59,NM,en,No,No,print
+"Energy Storm","Ice Age",1,2.69,2.18,NM,en,No,No,print
+"Energy Bolt","Mirage",1,3.98,3.98,NM,en,No,No,print
+"Emberwilde Djinn","Mirage",3,1.3,1.06,NM,en,No,No,print
+"Emberwilde Caliph","Mirage",10,1.34,1.03,NM,en,No,No,print
+"Elvish Farmer","Fallen Empires",1,6.3,8.03,NM,en,No,No,print
+"Elven Lyre","Fallen Empires",3,1.27,1.23,NM,en,No,No,print
+"Elkin Lair","Visions",1,3.49,2.62,NM,en,No,No,print
 "Ebon Praetor","Fallen Empires",1,2.29,2.64,NM,en,No,No,print
-"Earthlink","Ice Age",1,2,1.76,NM,en,No,No,print
-"Dwarven Thaumaturgist","Weatherlight",1,3.3,2.33,NM,en,No,No,print
-"Dwarven Sea Clan","Homelands",3,1.25,0.88,NM,en,No,No,print
-"Dwarven Pony","Homelands",1,2.43,2.37,NM,en,No,No,print
-"Dwarven Armorer","Fallen Empires",1,2,1.45,NM,en,No,No,print
-"Draconian Cylix","Fallen Empires",3,1.39,1.11,NM,en,No,No,print
-"Donate","Urza's Destiny",1,9.99,10.86,NM,en,No,No,print
-"Divine Retribution","Mirage",1,2.93,2.84,NM,en,No,No,print
-"Discordant Spirit","Mirage",3,1.4,1.14,NM,en,No,No,print
-"Diamond Kaleidoscope","Visions",1,2.85,2,NM,en,No,No,print
-"Demonic Attorney","Revised Edition",1,3.11,3.11,NM,en,No,No,print
-"Delif's Cube","Fallen Empires",1,1.89,2.04,NM,en,No,No,print
-"Daughter of Autumn","Homelands",3,1.1,1.05,NM,en,No,No,print
-"Darkpact","Revised Edition",1,2.88,2.59,NM,en,No,No,print
-"Cycle of Life","Mirage",3,1.2,1.1,NM,en,No,No,print
-"Crovax the Cursed","Stronghold",1,2.84,2.42,NM,en,No,No,print
-"Corrosion","Visions",1,3.5,3.29,NM,en,No,No,print
-"Contract from Below","Revised Edition",1,3.99,3.23,NM,en,No,No,print
-"Citanul Centaurs","Urza's Saga",1,1.84,3.16,NM,en,No,No,print
-"Circle of Despair","Mirage",1,3.19,2.51,NM,en,No,No,print
-"Chronatog","Visions",1,3.42,2.83,NM,en,No,No,print
-"Chromatic Armor","Ice Age",3,1.96,1.76,NM,en,No,No,print
-"Chaos Harlequin","Alliances",2,1.27,0.97,NM,en,No,No,print
-"Chain Stasis","Homelands",1,2.51,1.79,NM,en,No,No,print
-"Canopy Dragon","Mirage",1,2.73,2.97,NM,en,No,No,print
-"Call to Arms","Ice Age",3,1.25,1.07,NM,en,No,No,print
-"Brushwagg","Mirage",1,3.46,3.46,NM,en,No,No,print
-"Brand of Ill Omen","Ice Age",1,1.99,1.61,NM,en,No,No,print
-"Bone Mask","Mirage",3,1.62,1.3,NM,en,No,No,print
-"Blizzard","Ice Age",3,1.49,1.27,NM,en,No,No,print
-"Black Carriage","Homelands",3,1.34,1.19,NM,en,No,No,print
-"Benthic Djinn","Mirage",3,1.57,1.25,NM,en,No,No,print
-"Beast Walkers","Homelands",3,1.1,0.95,NM,en,No,No,print
-"Bazaar of Wonders","Mirage",1,2.14,1.82,NM,en,No,No,print
-"Barreling Attack","Mirage",3,1.31,1.24,NM,en,No,No,print
-"Balm of Restoration","Fallen Empires",3,1,1.07,NM,en,No,No,print
-"Balduvian Hydra","Ice Age",7,1.56,1.79,NM,en,No,No,print
-"Baki's Curse","Homelands",3,1.19,1.01,NM,en,No,No,print
-"Aysen Highway","Homelands",3,1.47,1.56,NM,en,No,No,print
-"Aysen Crusader","Homelands",3,1.36,1.62,NM,en,No,No,print
-"Avizoa","Weatherlight",3,1.3,1.39,NM,en,No,No,print
-"Autumn Willow","Homelands",1,2.32,2.85,NM,en,No,No,print
-"Auspicious Ancestor","Mirage",6,1.85,1.11,NM,en,No,No,print
-"Asmira, Holy Avenger","Mirage",1,3.33,3.04,NM,en,No,No,print
-"Ashnod's Cylix","Alliances",1,2.57,2.59,NM,en,No,No,print
-"Apocalypse Chime","Homelands",1,2.03,1.88,NM,en,No,No,print
-"Anaba Spirit Crafter","Homelands",1,2.67,1.99,NM,en,No,No,print
-"Anaba Ancestor","Homelands",2,1.47,1.33,NM,en,No,No,print
-"An-Zerrin Ruins","Homelands",1,4.25,4.22,NM,en,No,No,print
-"Amulet of Unmaking","Mirage",1,1.77,1.81,NM,en,No,No,print
-"Amulet of Quoz","Ice Age",3,1.51,1.6,NM,en,No,No,print
-"Altar of Bone","Ice Age",1,8.3,8.34,NM,en,No,No,print
-"Aku Djinn","Visions",1,2,2.11,NM,en,No,No,print
-"Afiya Grove","Mirage",1,2.32,1.87,NM,en,No,No,print
-"Aeolipile","Fallen Empires",1,2.21,2.2,NM,en,No,No,print
-"Aegis of the Meek","Ice Age",3,1.1,0.92,NM,en,No,No,print
+"Earthlink","Ice Age",1,1.99,1.67,NM,en,No,No,print
+"Dystopia","Alliances",1,4.2,4.12,NM,en,No,No,print
+"Dwarven Thaumaturgist","Weatherlight",1,2.98,2.14,NM,en,No,No,print
+"Dwarven Sea Clan","Homelands",3,1.25,0.9,NM,en,No,No,print
+"Dwarven Pony","Homelands",1,2.22,1.96,NM,en,No,No,print
+"Dwarven Armorer","Fallen Empires",1,2.22,1.42,NM,en,No,No,print
+"Draconian Cylix","Fallen Empires",3,1.39,1.1,NM,en,No,No,print
+"Donate","Urza's Destiny",1,10.26,10.59,NM,en,No,No,print
+"Dominating Licid","Exodus",1,5.99,4.86,NM,en,No,No,print
+"Divine Retribution","Mirage",1,2.8,2.7,NM,en,No,No,print
+"Discordant Spirit","Mirage",3,1.33,1.15,NM,en,No,No,print
+"Diamond Kaleidoscope","Visions",1,2.61,2,NM,en,No,No,print
+"Demonic Hordes","Revised Edition",1,9.47,10.38,NM,en,No,No,print
+"Demonic Attorney","Revised Edition",1,3.05,2.99,NM,en,No,No,print
+"Delif's Cube","Fallen Empires",1,1.98,1.86,NM,en,No,No,print
+"Daughter of Autumn","Homelands",3,1.19,1.18,NM,en,No,No,print
+"Darkpact","Revised Edition",1,2.61,2.58,NM,en,No,No,print
+"Cycle of Life","Mirage",3,1.23,1.1,NM,en,No,No,print
+"Crovax the Cursed","Stronghold",1,2.83,2.42,NM,en,No,No,print
+"Covetous Dragon","Urza's Destiny",1,4.75,4.75,NM,en,No,No,print
+"Corrosion","Visions",1,3.48,3.29,NM,en,No,No,print
+"Contract from Below","Revised Edition",1,3.68,3.34,NM,en,No,No,print
+"Conch Horn","Fallen Empires",1,4.21,5.26,NM,en,No,No,print
+"Commander Greven il-Vec","Tempest",1,4.48,4.48,NM,en,No,No,print
+"Citanul Centaurs","Urza's Saga",1,2.24,3.1,NM,en,No,No,print
+"Circle of Despair","Mirage",1,3.36,2.59,NM,en,No,No,print
+"Chronatog","Visions",1,3.45,2.74,NM,en,No,No,print
+"Chromatic Armor","Ice Age",3,1.9,1.78,NM,en,No,No,print
+"Chaosphere","Mirage",1,7.3,6.94,NM,en,No,No,print
+"Chaos Harlequin","Alliances",2,1.24,0.98,NM,en,No,No,print
+"Chain Stasis","Homelands",1,2.63,1.83,NM,en,No,No,print
+"Catacomb Dragon","Mirage",1,4.12,3.46,NM,en,No,No,print
+"Carrion","Mirage",1,5.99,5.74,NM,en,No,No,print
+"Canopy Dragon","Mirage",1,2.66,2.66,NM,en,No,No,print
+"Call to Arms","Ice Age",3,1.25,1.06,NM,en,No,No,print
+"Cadaverous Bloom","Mirage",1,8.99,6.07,NM,en,No,No,print
+"Brushwagg","Mirage",1,3.38,3.38,NM,en,No,No,print
+"Breathstealer's Crypt","Visions",1,12.53,11.42,NM,en,No,No,print
+"Brand of Ill Omen","Ice Age",1,1.99,1.65,NM,en,No,No,print
+"Bone Mask","Mirage",3,1.5,1.25,NM,en,No,No,print
+"Bone Dancer","Weatherlight",1,5.06,4.9,NM,en,No,No,print
+"Bogardan Phoenix","Visions",1,5.09,5.01,NM,en,No,No,print
+"Blizzard","Ice Age",3,1.49,1.29,NM,en,No,No,print
+"Black Carriage","Homelands",3,1.27,1.17,NM,en,No,No,print
+"Benthic Djinn","Mirage",3,1.56,1.25,NM,en,No,No,print
+"Beast Walkers","Homelands",3,1.29,0.97,NM,en,No,No,print
+"Bazaar of Wonders","Mirage",1,2.01,1.73,NM,en,No,No,print
+"Barreling Attack","Mirage",3,1.3,1.21,NM,en,No,No,print
+"Baron Sengir","Homelands",1,6.72,6.84,NM,en,No,No,print
+"Balm of Restoration","Fallen Empires",3,1.01,1.06,NM,en,No,No,print
+"Balduvian Trading Post","Alliances",1,4.78,4.04,NM,en,No,No,print
+"Balduvian Hydra","Ice Age",7,1.76,1.95,NM,en,No,No,print
+"Baki's Curse","Homelands",3,1.21,1.07,NM,en,No,No,print
+"Aysen Highway","Homelands",3,1.7,1.55,NM,en,No,No,print
+"Aysen Crusader","Homelands",3,1.57,1.68,NM,en,No,No,print
+"Avizoa","Weatherlight",3,1.34,1.37,NM,en,No,No,print
+"Autumn Willow","Homelands",1,2.44,2.71,NM,en,No,No,print
+"Auspicious Ancestor","Mirage",6,1.65,1.21,NM,en,No,No,print
+"Asmira, Holy Avenger","Mirage",1,3.21,3,NM,en,No,No,print
+"Ashnod's Cylix","Alliances",1,2.47,2.63,NM,en,No,No,print
+"Argothian Wurm","Urza's Saga",1,4,4.38,NM,en,No,No,print
+"Apocalypse Chime","Homelands",1,2,1.84,NM,en,No,No,print
+"Apocalypse","Tempest",1,7.87,6.97,NM,en,No,No,print
+"Ancestral Knowledge","Weatherlight",1,10.94,10.82,NM,en,No,No,print
+"Anaba Spirit Crafter","Homelands",1,2.51,2.01,NM,en,No,No,print
+"Anaba Ancestor","Homelands",2,1.62,1.33,NM,en,No,No,print
+"An-Zerrin Ruins","Homelands",1,4.48,4.58,NM,en,No,No,print
+"Amulet of Unmaking","Mirage",1,2.02,2.04,NM,en,No,No,print
+"Amulet of Quoz","Ice Age",3,1.56,1.72,NM,en,No,No,print
+"Altar of Bone","Ice Age",1,8.4,8.39,NM,en,No,No,print
+"Aku Djinn","Visions",1,2,2.1,NM,en,No,No,print
+"Afiya Grove","Mirage",1,2.04,2.02,NM,en,No,No,print
+"Aeolipile","Fallen Empires",1,2.49,2.79,NM,en,No,No,print
+"Aegis of the Meek","Ice Age",3,1.19,0.94,NM,en,No,No,print
 "Acidic Dagger","Mirage",3,1.24,1.18,NM,en,No,No,print
-"Aboroth","Weatherlight",1,2.12,2.39,NM,en,No,No,print
+"Aboroth","Weatherlight",1,2.42,2.48,NM,en,No,No,print

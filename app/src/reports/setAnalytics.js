@@ -6,14 +6,16 @@ const main = async () => {
   console.log("================================================");
   const data = await processData();
 
-  let heading = "YTD".padStart(10);
-  heading += "0".padStart(10);
-  heading += "15".padStart(10);
-  heading += "30".padStart(10);
-  heading += "60".padStart(10);
-  heading += "90".padStart(10);
-  heading += "120".padStart(10);
-  heading += "150".padStart(10);
+  const col1 = 10;
+
+  let heading = "YTD".padStart(col1);
+  heading += "0".padStart(col1);
+  heading += "15".padStart(col1);
+  heading += "30".padStart(col1);
+  heading += "60".padStart(col1);
+  heading += "90".padStart(col1);
+  heading += "120".padStart(col1);
+  heading += "150".padStart(col1);
   heading += "       SET";
   console.log(heading);
 
@@ -29,13 +31,13 @@ const main = async () => {
     const val150 = analyticPrices[6] ? analyticPrices[6][1].toFixed(2) : "";
 
     let row = (ytd[1] ? ytd[1].toFixed(2) : "").padStart(10);
-    row += val000.padStart(10);
-    row += val015.padStart(10);
-    row += val030.padStart(10);
-    row += val060.padStart(10);
-    row += val090.padStart(10);
-    row += val120.padStart(10);
-    row += val150.padStart(10);
+    row += val000.padStart(col1);
+    row += val015.padStart(col1);
+    row += val030.padStart(col1);
+    row += val060.padStart(col1);
+    row += val090.padStart(col1);
+    row += val120.padStart(col1);
+    row += val150.padStart(col1);
     row += "       " + set.split("-").splice(1).join(" ");
     console.log(row);
   }

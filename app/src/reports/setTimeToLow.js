@@ -31,23 +31,29 @@ const main = async () => {
       }
     }
   }
+
+  const col1 = 18,
+    col2 = 18,
+    col3 = 15,
+    col4 = 12,
+    col5 = 15;
   console.log(
-    "Release Date".padEnd(18) +
-      "Oldest Price".padEnd(18) +
-      "Date of Low".padEnd(15) +
-      "Price of Low".padStart(12) +
-      "Time to Low".padStart(15) +
+    "Release Date".padEnd(col1) +
+      "Oldest Price".padEnd(col2) +
+      "Date of Low".padEnd(col3) +
+      "Price of Low".padStart(col4) +
+      "Time to Low".padStart(col5) +
       "   Set Name"
   );
   output
     .sort((a, b) => (a[2] > b[2] ? -1 : 1))
     .forEach((item) => {
       console.log(
-        item[0].padEnd(18) +
-          item[1].padEnd(18) +
-          item[2].padEnd(15) +
-          item[3].toFixed(2).padStart(12) +
-          item[4].toFixed(0).padStart(15) +
+        item[0].padEnd(col1) +
+          item[1].padEnd(col2) +
+          item[2].padEnd(col3) +
+          item[3].toFixed(2).padStart(col4) +
+          item[4].toFixed(0).padStart(col5) +
           ("   " + item[5])
       );
     });

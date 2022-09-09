@@ -431,6 +431,34 @@ const inventory = [
     paid: 234.0,
     source: VENDOR.FORTUNA_GAMES,
   },
+  {
+    name: "521-theros-beyond-death-booster-box",
+    quantity: 1,
+    date: "2022-08-22",
+    paid: 100.0,
+    source: VENDOR.PRIVATE,
+  },
+  {
+    name: "239-ikoria-lair-of-behemoths-booster-box",
+    quantity: 2,
+    date: "2022-08-27",
+    paid: 260.69,
+    source: VENDOR.SMOKE_AND_MIRRORS,
+  },
+  {
+    name: "958-adventures-in-the-forgotten-realms-draft-booster-box",
+    quantity: 1,
+    date: "2022-08-27",
+    paid: 97.76,
+    source: VENDOR.SMOKE_AND_MIRRORS,
+  },
+  {
+    name: "3817-dominaria-united-set-booster-box",
+    quantity: 1,
+    date: "2022-09-02",
+    paid: 140,
+    source: VENDOR.SUPER_SPORTS_CARDS,
+  },
 ];
 
 module.exports = { boxTypes, priceTypes, msrpLookup, inventory, VENDOR, TODAY };

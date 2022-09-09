@@ -54,7 +54,7 @@ const main = async () => {
       let total = 0;
       bechmarkEnriched.forEach((i) => {
         total += i.price;
-        const line = i.name.padEnd(25) + i.set.padEnd(20) + i.price.toFixed(2).padStart(10) + "     " + i.date.padStart(10);
+        // const line = i.name.padEnd(25) + i.set.padEnd(20) + i.price.toFixed(2).padStart(10) + "     " + i.date.padStart(10);
         // console.log(line);
       });
       console.log(date + "   ---------------------------------------------------- " + total.toFixed(2).padStart(10));
